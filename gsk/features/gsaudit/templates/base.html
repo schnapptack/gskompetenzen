@@ -1,0 +1,56 @@
+<!DOCTYPE html >
+<html>{% load i18n %}
+	<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>{% block seo_page_title %}{% if seo_page_title %}{{ seo_page_title }}{% endif %}{% endblock %}</title>
+        
+        {% include "media_includes.html" %}
+        
+        <meta content="NONE,NOARCHIVE" name="robots">
+        {% block extrahead %}{% endblock %}
+	</head>
+	
+	<body class="{% block bodyclass %}{% endblock %} ">
+           <div id="user-feedback">
+                 {% for message in messages %}<div>{{ message }}</div> {% endfor %}
+            </div>
+           <div id="mainbar">
+                 <div id="global-nav" style="float:left">
+                        <a href="/" title="Dashboard" id="logo"></a>
+                        <a title="Mein Account" href="{% url "myaccount" %}" id="myaccount"></a>
+                        {% comment %}<a title="Hilfe" href="/" id="help"></a>{% endcomment %}
+                        <a title="Logout" href="/teachers/logout/" id="logout"></a>
+                        {% if teacher.is_staff %}<a title="Zur Administration" href="/admin/" id="admin"></a>{% endif %}
+                    </div>
+                
+                <div class="mainbar-tabs">
+                    {% block tabs %}
+                    
+                    {% endblock %}
+                </div>
+                   
+                <div class="clear"></div>
+            </div>
+       
+            {% block content %}
+            {% endblock %}
+    </body>
+    
+    <script type="text/javascript">
+    
+        $('#user-feedback div').each(function() {
+            $(this).hide('fade', 6000)            
+        })
+    
+    
+        /**var cls = ''
+        if ($.browser.msie) {
+            cls = 'ie' + parseInt($.browser.version) + ' ie'
+        } else if ($.browser.mozilla) {
+            cls = 'firefox'
+        } else if ($.browser.webkit) {
+            cls = 'chrome'
+        }   
+        $('body').addClass(cls)   **/
+    </script>
+</html>

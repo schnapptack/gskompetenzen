@@ -1,0 +1,22 @@
+
+body {color:#646464; font-family: arial, sans-serif; background: url(grey_wash_wall.png);}
+
+#box {padding:32px; background:#fff; border:5px solid #ccc; width:900px; margin:auto; margin-top:99px;}
+
+
+#left {float:left;}
+#right {float:left; margin-left:32px; width:378px;}
+
+#login {width:258px; margin:auto;}
+
+form {margin-top: 36px;}
+form a {font-size:12px;}
+.form-row {padding: 12px 0px 0px 0px; width:258px;}
+label {padding-bottom:8px;}
+.submit-row {margin-top:12px; width:258px; position:relative;}
+
+.forgot-password {color: #999; position:absolute; bottom:15px; right:0; text-decoration:none; }
+.forgot-password:hover {text-decoration:underline;}
+
+#box h1 {text-align:center;margin-top: 30px;
+text-transform: uppercase;}

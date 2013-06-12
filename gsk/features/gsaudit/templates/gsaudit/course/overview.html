@@ -1,0 +1,112 @@
+ <div>
+<h1>{{ grade.name }} - {{ subject.name }}</h1>
+    <div class="note" style="width:600px;">
+        Hier können Sie Notizen für diesen Lehrauftrag hinterlegen.
+    </div>
+
+    <form class="overview_info" method="post" data-partial="gs_content" action="{% url course-overview grade_id=grade.id subject_id=subject.id %}">
+        {% csrf_token %}
+        <table>{{ form }}</table>
+        
+        <input type="submit" value="Speichern" />
+    </form>
+<!--
+Hier sollte eigentlich ein dotchart stehen (so wie <a href="http://g.raphaeljs.com/dotchart.html" target="top">http://g.raphaeljs.com/dotchart.html</a>).
+Damit könnte visualisiert werden, welche Kompetenzen bei welchem Schüler wie oft beurteilt wurden.
+Leider ist die Performance dieses Skripts auf Grund der Größe der Kompetenz-Schüler-Matrix derzeit so miserabel, dass uns beim Testen oft der Browser eingefroren ist.
+Wir haben daher das Skript erst einmal deaktiviert und untersuchen in wie weit wir die Performance verbessern können.
+Eine Alternative wäre auf dem Server ein Diagramm zu generieren (dadurch ginge dann aber leider die Interaktivität verloren).
+-->
+<!--
+<h2>Anzahl Beobachtungen pro Schüler und Kompetenz</h2>
+
+<div id="chart"></div>
+
+<script>
+
+var punchchart = (function() {
+    var self = {};
+    self.data=[{{ pupil_skill_matrix.data_array }}];
+    self.axisx=[{{ pupil_skill_matrix.pupil_array }}];
+    self.axisy=[{{ pupil_skill_matrix.skill_array }}];
+    
+    
+    self.draw = function() {
+        //parse_data();
+        
+        var width = 1000;
+        var leftgutter_width = 250;
+        var topgutter_height = 250;
+        var bottomgutter_height = 100;
+        var height = topgutter_height + (self.axisy.length * 30) + bottomgutter_height;
+        
+        var txtstyle = {"font": '12px Arial','text-anchor': 'start', stroke: "none", fill: "#000"};
+        var xaxisstyle = $.extend({'text-anchor': 'start'}, txtstyle);
+        var X = (width - leftgutter_width) /self.axisx.length;
+        var Y = (height - topgutter_height - bottomgutter_height) / self.axisy.length;
+        var color = '#000';
+        var r = Raphael("chart", width, height);
+        var max_radius = Math.round(X / 2) - 1;
+        // r.rect(0, 0, width, height, 5).attr({fill: "#000", stroke: "none"});
+        
+        //draw x axis labels
+        for (var i = 0, ii = self.axisx.length; i < ii; i++) {
+            r.text(leftgutter_width + X * (i + .5), 230, self.axisx[i]).attr(xaxisstyle).rotate(-45,leftgutter_width + X * (i + .5), 230);
+            
+        }
+        
+        //draw y axis labels
+        for (var i = 0, ii = self.axisy.length; i < ii; i++) {
+            r.text(10, topgutter_height + Y * (i + .5), self.axisy[i]).attr(txtstyle);
+        }
+        
+        //draw dots
+        var o = 0;
+        for (var j = 0, jj = self.axisx.length; j < jj; j++) {
+        	for (var i = 0, ii = self.axisy.length; i < ii; i++) {
+                var R = 2;//self.data[o] && Math.min(Math.round(Math.sqrt(self.data[o] / Math.PI) * 4), max_radius);
+                R++;
+                if (R || true) {
+                    (function (dx, dy, R, value) {
+                        var color = "hsb(" + [(1 - R / max_radius) * .5, 1, .75] + ")";
+                        var dt = r.circle(dx + 60 + R, dy + 10, R).attr({stroke: "none", fill: color});
+                        if (R < 6) {
+                            var bg = r.circle(dx + 60 + R, dy + 10, 6).attr({stroke: "none", fill: "#000", opacity: .4}).hide();
+                        }
+                        var lbl = r.text(dx + 60 + R, dy + 10, self.data[o])
+                                .attr({"font": '10px Fontin-Sans, Arial', stroke: "none", fill: "#000"}).hide();
+                        var dot = r.circle(dx + 60 + R, dy + 10, max_radius).attr({stroke: "none", fill: "#ccc", opacity: 0});
+                        dot[0].onmouseover = function () {
+                            if (bg) {
+                                bg.show();
+                            } else {
+                                var clr = Raphael.rgb2hsb(color);
+                                clr.b = .5;
+                                dt.attr("fill", Raphael.hsb2rgb(clr).hex);
+                            }
+                            lbl.show();
+                        };
+                        dot[0].onmouseout = function () {
+                            if (bg) {
+                                bg.hide();
+                            } else {
+                                dt.attr("fill", color);
+                            }
+                            lbl.hide();
+                        };
+                    })(leftgutter_width + X * (j + .5) - 60 - R, topgutter_height + Y * (i + .5) - 10, R, self.data[o]);
+                }
+                o++;
+            }
+        }
+    };
+    
+    return self;
+})();
+
+
+$(function () {
+    punchchart.draw();
+});
+</script>
+ --></div>

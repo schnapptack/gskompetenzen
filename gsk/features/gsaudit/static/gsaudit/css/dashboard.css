@@ -1,0 +1,16 @@
+
+/* DASHBOARD: Teaching Assignements
+-----------------------------------------*/
+
+.dashboard {padding:122px 22px 22px 22px;;}
+.ta-dashboard {background: #f5f5f5; border: 1px solid #ddd; border-left:0px; border-top:0px;
+    margin: 0px 1px 0px 0px; padding:22px; width:300px; float:left;
+}
+.ta-dashboard h1 a {text-decoration:none; color:#6F876C; padding:2px 2px 2px 0px}
+.ta-dashboard h1 a:hover {background:#fff;}
+
+/* My Account
+-----------------------------------------*/
+.myaccount table {font-size:14px;}
+.myaccount table tr th {padding:12px 22px 12px 0px;; text-align:left; font-weight: normal;border-bottom: 1px solid #eee;}
+.myaccount table tr td {padding:12px 22px;; text-align:left; border-bottom: 1px solid #eee;}

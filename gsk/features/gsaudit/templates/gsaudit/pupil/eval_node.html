@@ -1,0 +1,11 @@
+{% load gsaudit_tags %}
+
+{{ node.name }}
+<span>({{ node.weight }}%)</span>
+<span class="avg-value" style="float:right">
+    {% if avg != -1 %}
+        {{ avg|display_grade }}
+    {% else %}
+        <span style="font-style:italic; font-size:12px;">--</span>
+    {% endif %}
+</span>

@@ -1,0 +1,181 @@
+
+body {margin:0px; font-family: arial, sans-serif; color:#646464; font-size:13px; }
+#header { height:56px; }
+
+  
+  
+#user-feedback {position:fixed; right:1px; top:12px; z-index:3;}
+#user-feedback div {padding:8px 12px 8px 12px; font-size:12px; background:#999; color:#fbfbfb; margin-top:1px;}
+  
+#print-content {padding:22px;}
+#gsk-content {position: relative;width: 100%; min-width:1024px; }
+
+
+
+.note {border: 1px solid #ddd; background:#FCFCEB; padding:22px;}
+
+
+
+
+
+/* The accounts screen
+----------------------------------------------------------- */
+
+.users-login-body {background:url(grey_wash_wall.png);}
+
+.users-login {width:444px; background: #fff; border: 2px solid #ddd;  margin:auto; margin-top:200px; font-size:14px; padding-top:22px;
+    
+}
+.users-login label {display:block;}
+.users-login .form-row {padding: 6px 22px 6px 22px; }
+.users-login .submit-row {padding:6px 22px 6px 22px; background:#f5f5f5;}
+
+
+
+/* MAINBAR
+-----------------------------------------*/
+#mainbar {background:#eee;}
+.mainbar-tabs {float:left; }
+.mainbar-tabs a {
+    padding:21px; border-right:1px solid #ddd; border-left:1px solid #fff; background:#eee;  display:block; 
+    float:left; text-decoration:none; font-size:13px; color: #888}
+.mainbar-tabs a.active {background:#fff; font-weight:bold;}
+
+/* Teaching Assignement VIEW
+-----------------------------------------*/
+
+#left {width: 200px; float:left;;}
+#right { padding: 0px 12px 12px 00px; overflow:hidden; background:#fff; min-width:800px;}
+.padding-page {padding:42px 22px 22px 22px; background:#fff;}
+#right h2 {color: #999; margin-top:0px;}
+
+
+
+table.data td, table.data th {padding:6px; border-bottom:1px solid #ddd; font-size:13px;}
+
+
+
+
+
+
+
+/* Audit Management
+-----------------------------------------*/
+
+#audit-toolbar {height:60px;}
+#audit-views {float:left;}
+
+.audit-listing div {}
+.audit-listing a {
+    background:#fbfbfb; border:1px solid #eee; border-top:0px; border-left:0px; margin: 0px 1px 1px 0px; 
+    padding:12px; font-size: 13px; float:left; text-decoration:none;}
+
+    
+.audit-listing a.audit { text-decoration:none; display:block; width:500px; }
+.audit-listing a.audit:hover {}
+.audit-listing a.delete {background: #fbfbfb url(delete.png) no-repeat 2px 6px;}
+.audit-listing a.edit {background: #fbfbfb url(edit.png) no-repeat 2px 6px;}
+.audit-listing .audit-written a.audit {background:#FCFBF2; color:#94925F;}
+
+
+/* written vs. oral exam colors
+--------------------------------*/
+
+.buttons a.written-exam {color:#A89B67; font-weight:bold;}
+.audit-listing .written-exam a {color:#A89B67 !important;}
+.written-exam-legend {color:#A89B67;}
+.written-exam-legend span{display:inline-block;height:10px;width:10px;background:#A89B67 ; }
+
+.buttons a.oral-exam {color:#666;font-weight:bold;}
+.audit-listing .oral-exam a {color:#666;}
+.oral-exam-legend {color:#666;}
+.oral-exam-legend span {display:inline-block;height:10px;width:10px;background: #666; }
+
+.exam-legend {font-size:13px;}
+.fc-event-inner {padding:6px; }
+.fc-event {background-color:#999; color:#fbfbfb; border:0px; font-size:13px !important;}
+.fc-event.written-exam {background-color:#A89B67; }
+
+
+table.eval-form th, table.eval-form td { font-size:13px;
+    border:1px solid #eee; background:#fff; text-align:left; padding:7px; width:180px;}
+table.eval-form thead th {position:relative; padding-bottom:22px;}
+table.eval-form th {background:#f5f5f5}
+    
+table.eval-form textarea {width:180px; height:50px; display:none;}
+    .eval-form-ratings {position:absolute; bottom:5px;}
+    .eval-form-ratings span {padding: 0px 9px 0px 9px;}
+    .skill-tools {width:180px;  margin-top:6px;}
+    .skill-tools .eval-diagnosis {opacity: 0.3;}
+    .skill-tools .eval-note {opacity: 0.3;}
+    .skill-tools a {text-decoration:none;}
+
+/* Pupil Evaluation
+----------------------------------------- */
+
+ul.nested-list li {margin-left:0px;}
+ul.nested-list li ul li  {margin-left:20px;}
+ul.nested-list li {list-style:none;}
+ul.nested-list li .nested-list-node {background:#FAF9F2; border-top:1px solid #fff; border-bottom:1px solid #eee;
+    padding:8px 12px 8px 12px; color:#999; cursor:pointer; font-size:13px;}
+ul.nested-list li .nested-list-node:hover {background:#FAF9F2;}
+ul.nested-list li ul li .eval-node {font-size:14px;}
+ul.nested-list li ul li ul li .nested-list-node {font-size:13px;}
+
+ul.nested-list  li.nested-list-headline > .nested-list-node{background:#f5f5f5; border-bottom:1px solid #ddd; font-size:14px;
+    font-weight:bold;}
+
+.eval-result {margin-top:22px; color:#999; }
+.eval-result span {float:right;}
+
+/* Skill TYPES
+----------------------------------------- */
+
+.skill-pro {color:#579664 !important; ;}
+.skill-beginner {color:#8A4848 !important; }
+/*.skill-ok {color:#3A7042 !important; font-weight:bold !important;}*/
+em {font-size:15px !important;}
+    
+    .skill-legend {font-size:12px;}
+    .skill-legend td {padding-right:5px;}
+    .skill-legend span {padding: 12px 12px 0px 0px; display:block; float:left; margin-right:5px;}
+    .skill-legend-ok span {background:#3A7042;  }
+    .skill-legend-ok {color: #3A7042; }
+    .skill-legend-pro span {background:#579664;   }
+    .skill-legend-pro {color: #579664;}
+    .skill-legend-beginner span {background:#8A4848;   }
+    .skill-legend-beginner {color: #8A4848;}
+
+
+/* Subject stats
+-----------------------------------------*/
+
+table.subject-stats {width:100%;}
+table.subject-stats th {text-align:left; padding:6px; border: 1px solid #eee;}
+
+table.subject-stats td {border-bottom:1px solid #eee; font-size:12px; padding:6px;}
+
+
+
+/* Listbox Pupil stats
+----------------------------------------- */
+
+.listbox {border:1px solid #ddd; margin-bottom:1px;}
+.listbox-headline {padding:12px; background:#f5f5f5; border-bottom:1px solid #ddd; font-size:13px;}
+.listbox-content {}
+.listbox-item {border-bottom:1px dashed #ddd; padding: 6px 12px 6px 12px; line-height:20px; font-size:13px; cursor:pointer;}
+.listbox-item.hover {background:#FAF9F2;}
+.listbox-item.no-data-yet {color:#999; font-style:italic;}
+
+#distribution-plot-container {position:fixed; right:5px; background:#fff; padding:22px; display:none; border: 1px solid #eee;  }
+#distribution-plot {height:200px;}
+#pupil-stats h1 {    margin-top: 27px;
+    font-size: 18px;
+    margin-bottom: 6px;}
+
+/* Content Styling
+-----------------------------------------*/
+
+a {color: #25612D}
+
+

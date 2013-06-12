@@ -1,0 +1,46 @@
+<!DOCTYPE html >
+<html>{% load i18n %}
+	<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>{% block seo_page_title %}{% if seo_page_title %}{{ seo_page_title }}{% endif %}{% endblock %}</title>
+        
+        <link href="{{STATIC_URL}}audit/reset.css" type="text/css" rel="stylesheet"> 
+        
+        {% include "media_includes.html" %}
+        
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}audit/layout.css"> 
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}audit/buttons.css"> 
+        
+        
+        <!-- sparkline -->
+        <script type="text/javascript" src="{{STATIC_URL}}audit/jquery.sparkline.min.js"></script>
+        
+        <!-- jqplot -->
+        <script type="text/javascript" src="{{STATIC_URL}}audit/jqplot/jquery.jqplot.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}audit/jqplot/plugins/jqplot.barRenderer.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}audit/jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+        <link href="{{STATIC_URL}}audit/jqplot/jquery.jqplot.css" type="text/css" rel="stylesheet"> 
+        
+        
+        <meta content="NONE,NOARCHIVE" name="robots">
+        {% block extrahead %}{% endblock %}
+	</head>
+	
+	<body class="{% block bodyclass %}{% endblock %} ">
+        <div id="print-content">
+            {% block content %} {% endblock %}
+        </div>
+    </body>
+    
+    <script type="text/javascript">
+        /**var cls = ''
+        if ($.browser.msie) {
+            cls = 'ie' + parseInt($.browser.version) + ' ie'
+        } else if ($.browser.mozilla) {
+            cls = 'firefox'
+        } else if ($.browser.webkit) {
+            cls = 'chrome'
+        }   
+        $('body').addClass(cls)   **/
+    </script>
+</html>

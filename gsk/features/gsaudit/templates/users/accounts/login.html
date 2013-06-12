@@ -1,0 +1,77 @@
+<!DOCTYPE html >
+<html>{% load i18n %}
+	<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>{% block seo_page_title %}{% if seo_page_title %}{{ seo_page_title }}{% endif %}{% endblock %}</title>
+        
+        {% include "media_includes.html" %}
+        
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}gsaudit/css/login.css"> 
+        
+        
+        <meta content="NONE,NOARCHIVE" name="robots">
+        {% block extrahead %}{% endblock %}
+	</head>
+	
+	<body class="{% block bodyclass %}{% endblock %} ">
+      
+        <div id="box">
+            
+            <div id="left">
+                <img src="{{ STATIC_URL }}gsaudit/css/gsk.jpg"/>
+            </div>
+            <div id="right">
+                <div id="login">
+                <h1>Login</h1>
+                
+                <form action="{{ login_url }}" method="post" id="login-form">{% csrf_token %}
+                
+                    {% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
+                    <p class="errornote">
+                    {% blocktrans count form.errors.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+                    </p>
+                    {% endif %}
+                    {{ form.this_is_the_login_form.errors }}
+                   
+                    {% for error in form.non_field_errors %}
+                    <p class="errornote">
+                        {{ error }}
+                    </p>
+                    {% endfor %}
+                
+                    <div class="form-row {% if form.username.errors %}error{% endif %}">
+                    {% if not form.this_is_the_login_form.errors %}{#{ form.username.errors }#}{% endif %}
+                    <label for="id_username" class="required">{% trans 'Username:' %}</label> {{ form.username }}
+                    </div>
+                    <div class="form-row {% if form.password.errors %}error{% endif %} password" >
+                    {% if not form.this_is_the_login_form.errors %}{#{ form.password.errors }#}{% endif %}
+                    <label for="id_password" class="required">{% trans 'Password:' %}</label> {{ form.password }}
+                    <input type="hidden" name="this_is_the_login_form" value="1" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+
+                    </div>
+                    <div class="submit-row">
+                    <input type="submit" value="{% trans 'Log in' %}" />
+                     <a href="{{ password_reset_url }}" class="forgot-password">{% trans "Forgot your password?" %}</a>
+                    </div>
+                </form>
+                </div>
+            
+            </div>
+            <div class="clear"></div>
+      
+
+        </div>
+       
+        
+        <script type="text/javascript">
+        document.getElementById('id_username').focus()
+        $('#login-form').submit(function() {
+            var u = $('input[name="username"]')
+            u.val(u.toLowerCase())
+        })
+        </script>
+    </body>
+</html>
+
+

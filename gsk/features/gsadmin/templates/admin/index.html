@@ -1,0 +1,35 @@
+{% extends "admin/base_site.html" %}
+
+{% block content_title %}{% endblock %}
+{% block content %}
+   
+    <div class="section">
+        <h1>{{ school }}</h1>
+        <p>Sie verwenden GS-Kompetenzen aktuell mit 
+        <a href="#">{{ school.get_teachers|length }} Lehrern</a> und
+        <a href="#">{{ school.get_pupils|length }} Schülerinnen und Schülern</a> organisiert in 
+        <a href="#">{{ school.get_teaching_assignments|length }} Lehraufträgen</a>.</p>
+    </div>
+    
+    
+      
+   
+  
+   
+  
+   
+   
+   <style>
+        .links a span {font-size:11px; font-style:italic; display:block; margin-top:5px; color:#999;}
+        
+        .section {font-size:16px; border-bottom:1px solid #ddd; margin-bottom:22px; padding-bottom:22px;}
+        .box {float:left; padding-right:22px; border-right:1px solid #ddd; margin-right:22px;}
+        
+        .dashboard h1 {font-size:33px;}
+        
+        .buttons.mega a {font-size:12px !important; padding: 12px 32px 12px 32px !important;}
+        
+   </style>
+   
+   
+{% endblock %}

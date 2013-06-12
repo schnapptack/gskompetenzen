@@ -1,0 +1,203 @@
+{% extends "gsaudit/pupil/pupil_frame.html" %}
+{% load gsaudit_tags %}
+
+
+
+{% block pupil_content %}
+
+    <div class="buttons float-right">
+        <a class="printlink" target="_blank" href="{% url "pupil-print_statistic" pupil_id=pupil.id subject_id=subject.id grade_id=grade.id %}">Drucken</a>
+    </div>
+
+    <h1>Kompetenzentwicklung <i>{{ pupil }}</i></h1>
+
+    Beobachtungen inkl. Diagnosen
+    <br/><br/>
+     {% include "gsaudit/skill_legend.html" %}
+    <div id="distribution-plot"></div>
+    <div id="pupil-stats">
+        {% for skill_group in skill_graph.skill_groups %}
+        
+            {% if skill_group.is_headline %} 
+                <h1>{{ skill_group.skill }}</h2>
+            {% else %}       
+                <div class="listbox">
+                    <div class="listbox-headline">{{ skill_group.group }}</div>
+                    <div class="listbox-content">
+                        {% for skill in skill_group.skills %}
+                        <div class="listbox-item {{ skill.skill_level_type }}">{{ skill.name }}{{ skill.skill_level_icon }} {{ skill.development }}</div>
+                        {% endfor %}
+                    </div>
+                 </div>   
+            {% endif %}
+            
+       
+        {% endfor %}
+    </div>
+    <!--  
+    <div id="distribution" style="width:200px;position:fixed;top:30px;right:30px;border: 1px solid #ddd;padding:20px;background:white;"></div>
+    <table class="skill_graph">
+        <tr><th>Kompetenz</th><th>Entwicklung</th></tr>
+    {% for skill in skill_graph.skills %}
+        <tr>
+        {% if skill.is_group %}
+            <th class="skill_group" colspan="2">{{ skill.name }}</th>
+        {% else %}
+            <th>{{ skill.name }}</th><td>{{ skill.development }}</td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
+    -->
+    
+    <script>
+    $(function() {
+        $('div.nested-list-node').not('.nested-list-headline').click(function() {
+            var el = $(this)
+            el.parent().children('ul').toggle()
+        })
+    })
+    </script>
+    
+    <script>
+    
+    $(function() {
+    
+    function plot_distribution(tr, series, avg_text) {
+    
+        $('#distribution-plot').show().empty().append(
+            $('<h4>' + tr.children('div').text() + '</h4>')
+        ).append(
+            $('<h3>Verteilung</h3>')
+        ).append(
+            $('<div id="jqchart"></div>')
+        ).append(
+            $('<div>Durchschnitt: <span id="avg" style="font-weight:bold">' + avg_text + '</span></div>')
+        );
+        
+        
+        // Can specify a custom tick Array.
+        // Ticks should match up one for each y value (category) in the series.
+        var ticks = ['--', '-', 'o', '+', '++'];
+         
+        var plot1 = $.jqplot('jqchart', [series], {
+            // The "seriesDefaults" option is an options object that will
+            // be applied to all series in the chart.
+            seriesDefaults:{
+                renderer:$.jqplot.BarRenderer,
+                rendererOptions: {fillToZero: false, varyBarColor:true}
+            },
+            // Custom labels for the series are specified with the "label"
+            // option on the series option.  Here a series option object
+            // is specified for each series.
+            series:[
+                /*{label:'Hotel'},
+                {label:'Event Regristration'},
+                {label:'Airfare'}*/
+            ],
+            seriesColors: [ "#BB0014", "#BB0014", "#ddd", '#1e9817', '#1e9817'],
+            // Show the legend and put it outside the grid, but inside the
+            // plot container, shrinking the grid to accomodate the legend.
+            // A value of "outside" would not shrink the grid and allow
+            // the legend to overflow the container.
+            legend: {
+                //show: true,
+                //placement: 'outsideGrid'
+            },
+            axes: {
+                // Use a category axis on the x axis and use our custom ticks.
+                xaxis: {
+                    renderer: $.jqplot.CategoryAxisRenderer,
+                    ticks: ticks
+                },
+                // Pad the y axis just a little so bars can get close to, but
+                // not touch, the grid boundaries.  1.2 is the default padding.
+                yaxis: {
+                    tickInterval: 1,
+                    tickOptions: {
+                        formatString: '%d'
+                    } 
+                    /*pad: 1.05,
+                    tickOptions: {formatString: '%d'}*/
+                }
+            }
+        });
+    }
+    
+    $('.line').hover(function() {
+        $(this).addClass('hover')
+    }, function() {
+        $(this).removeClass('hover')
+    })
+    
+    
+    $('#distribution-plot').hide();
+    $('.inlinesparkline').each(function() {
+            var elem = $(this);
+            if (!$.trim(elem.text())) {
+                elem.parent().addClass('no-data-yet')
+                elem.parent().attr('title', 'Noch keine Daten vorhanden')
+            } else {
+                var ts = [];
+                var sum = 0;
+                var distribution = [0,0,0,0,0];
+                var raw = elem.text().split(',');
+                $.each(raw, function(index, value) {
+                    var intval = parseInt(value);
+                    ts.push(intval)
+                    sum += intval
+                    distribution[intval + 2]++
+                })
+                
+                var avg = sum / ts.length;
+                var avg_text;
+                if (avg < -1.7) {
+                    avg_text = '--';
+                } else if (avg < -1.3) {
+                    avg_text = '--/-';
+                } else if (avg < -0.7) {
+                    avg_text = '-';
+                } else if (avg < -0.3) {
+                    avg_text = '-/o';
+                } else if (avg < 0.3) {
+                    avg_text = 'o';
+                } else if (avg < 0.7) {
+                    avg_text = '0/+';
+                } else if (avg < 1.3) {
+                    avg_text = '+';
+                } else if (avg < 1.7) {
+                    avg_text = '+/++';
+                } else if (avg < 5) {
+                    avg_text = '++';
+                }
+                
+                elem.parent().hover(
+                    function() {
+                        var li = $(this);
+                        li.addClass('hovered')
+                        plot_distribution(li, distribution, avg_text);
+                    },
+                    function() {
+                        var tr = $(this);
+                        tr.removeClass('hovered');
+                        $('#distribution-plot').hide();
+                    }
+                );
+                elem.sparkline('html', {
+                    type: 'bar',
+                    zeroAxis: true,
+                    chartRangeMin: -2,
+                    chartRangeMax: 2,
+                    height:30,
+                    barColor: '#1e9817',
+                    negBarColor: '#BB0014',
+                    zeroColor: '#bbb'
+                });
+            }
+
+        });
+    });
+    </script>
+    
+    {# skill_graph.script_node #}
+{% endblock %}

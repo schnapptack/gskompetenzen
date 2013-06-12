@@ -1,0 +1,32 @@
+{% extends "admin/base_site.html" %}
+
+
+
+{% block content %} 
+    
+    <h1>Kompetenzbäume</h1>
+    
+    <div class="buttons ">
+        <a class="addlink" href="{% url "admin:gsaudit_skill_add" %}">+ Kompetenzbaum</a>
+    </div>
+    <br/>
+    
+    {% for skilltree in skilltrees %}
+        <a class="skilltree" href="{% url "gsadmin-skilltree" skilltree.id %}">
+            <span class="skilltree-title">{{ skilltree.name }}</span>
+            <span class="skilltree-author">{% if skilltree.author %}© {{ skilltree.author.school }}{% else %}&nbsp;{% endif %}</span>
+        </a>
+    {% endfor %}
+    
+
+    <style>
+        .skilltree {
+            padding:12px; background:#fbfbfb; border:1px solid #eee; border-top:0px; border-left:0px; float:left; 
+            margin:0px 1px 1px 0px; display:block; text-align:center; width:222px;
+        }
+        .skilltree-title {font-size:17px; margin:0px; display:block;}
+        .skilltree-author {display:block; margin-top:15px;}
+    </style>
+
+
+{% endblock %}

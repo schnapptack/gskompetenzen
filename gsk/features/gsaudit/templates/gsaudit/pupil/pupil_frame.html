@@ -1,0 +1,16 @@
+{% extends "gsaudit/course/frame.html" %}
+{% load gsaudit_tags %}
+
+
+{% block tabs %}
+   <a href="{% url "pupil-statistic" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_stats_view %} class="active"{% endif %}>Schüler-Statistik</a>
+   <a href="{% url "pupil-ta_info" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_info_view %} class="active"{% endif %}>Notizen</a>
+   <a href="{% url "pupil-eval_info" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_eval_info_view %} class="active"{% endif %}>Auswertung</a>
+{% endblock %}
+
+
+{% block course_content %}
+<div id="pupil_content">
+    {% block pupil_content %} {% endblock %}
+</div>
+{% endblock %}

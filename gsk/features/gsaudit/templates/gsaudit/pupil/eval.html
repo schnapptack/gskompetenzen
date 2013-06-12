@@ -1,0 +1,117 @@
+{% extends "gsaudit/pupil/pupil_frame.html" %}
+{% load gsaudit_tags %}
+
+
+
+{% block pupil_content %}
+
+
+    <h1>Auswertung für <i>{{info.pupil}}</i></h1>
+    
+    <ul class="nested-list">
+            <li class="nested-list-headline">
+                <div class="nested-list-node ">Mündlich</div>
+            </li>
+            {% for cat in evaluation.categories %}
+                    <li >
+                        {% with node=cat.cat  avg=cat.avg %}
+                            <div class="nested-list-node">
+                                {% include "gsaudit/pupil/eval_node.html" %}
+                            </div>
+                        {% endwith %}
+                        {% if cat.groups %}
+                        <ul>
+                            {% for group in cat.groups %}
+                                <li class="group">
+                                    {% with node=group.group avg=group.avg %}
+                                        <div class="nested-list-node">
+                                            {% include "gsaudit/pupil/eval_node.html" %}
+                                        </div>
+                                    {% endwith %}
+                                    
+                                     {% if group.skills %}
+                                        <ul>
+                                            {% for skill in group.skills %}
+                                                <li class="group">
+                                                    {% with node=skill.skill avg=skill.avg %}
+                                                        <div class="nested-list-node">
+                                                            {% include "gsaudit/pupil/eval_node.html" %}
+                                                            <span class="num-audits">Bewertungen: {{ skill.num_audits }}</span>
+                                                            <span class="num-diagnostic-audits">
+                                                                Diagnosen: {{ skill.num_diagnostic_audits }}
+                                                            </span>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    {% endwith %}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %} 
+    </ul>
+    
+    <ul class="nested-list">
+        <li class="nested-list-headline">
+            <div class="nested-list-node">
+                Schriftlich
+                <span style="">({{ evaluation.remaining_weight }}%)</span>
+                <span class="category-avg" >
+                {% if evaluation.written_exams_rating != 0 and evaluation.written_exams_rating != -1 %}
+                    {{ evaluation.written_exams_rating|display_grade }}
+                {% else %}
+                    Keine Daten
+                {% endif %}
+                </span>
+            </div>
+        </li>
+        {% for exam in evaluation.written_exams %}
+            <li>
+            {% with node=exam.audit avg=exam.avg %}
+                <div class="nested-list-node">
+                {% include "gsaudit/pupil/eval_node.html" %}
+                </div>
+            {% endwith %}
+            </li>
+       {% endfor %}
+    </ul>
+    
+    
+
+
+    <div class="eval-result">
+        Errechnete Gesamtnote
+        <span>
+            {% if evaluation.total_rating != -1 %}
+                {{ evaluation.total_rating|display_grade }}
+            {% else %}
+                Nicht genug Daten
+            {% endif %}
+        </span>
+    </div>
+
+
+<style>
+    ul.nested-list li ul {display:none;}
+</style>
+<script>
+    $(function() {
+        $('div.nested-list-node').not('.nested-list-headline').click(function() {
+            var el = $(this)
+            el.parent().children('ul').toggle()
+        })
+    })
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

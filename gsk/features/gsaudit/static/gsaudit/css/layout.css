@@ -1,0 +1,75 @@
+
+#mainbar {width:100%; z-index:111; border-bottom:0px solid #ddd;}
+
+#left {position:fixed; margin-top:-11px;}
+#right {margin-left: 200px; margin-top:68px; padding-left:22px; padding-top:8px;}
+
+
+.current-ta a {text-decoration:none;}
+
+.mainbar-tabs {}
+
+
+
+#mainbar {position:fixed; top:0px;
+
+-webkit-transition: all 2 ease;
+-moz-transition: all 2 ease;
+-ms-transition: all 2 ease;
+-o-transition: all 2 ease;
+transition: all 2 ease;
+}
+
+/* GLOBAL NAVIGATION
+--------------------------------------------------------------------------------------------------*/
+#global-nav {float:right; background:#666;}
+#global-nav a {
+    width:66px; height:56px; display:block; float:left; 
+    background:url(http://cdn2.iconfinder.com/data/icons/picons-essentials/57/logout-32.png) center no-repeat;
+    border-left: 1px solid #666; border-right: 1px solid #888;
+}
+#global-nav a:hover {background-color: #4d4d4d !important;}
+a#logo {background: url(gsk_logo.png) center no-repeat; border-left:0px; }  
+a#myaccount {background: url(User-2.png) center no-repeat; }  
+a#dashboard {background: url(Documents.png) center no-repeat; }
+a#admin {background: url(screen.png) center no-repeat; }  
+a#logout {background: url(Exit.png) center no-repeat; } 
+a#help {background: url(help.png) center no-repeat; }
+
+.position {border-right:1px solid #eee;  width:200px; color:#999; background:#FAF9F2;
+line-height: 56px; text-align:center;
+    padding: 0px 22px;}
+
+
+/* GLOBAL NAVIGATION
+--------------------------------------------------------------------------------------------------*/
+.page {padding:88px 4px 22px 22px;}
+
+
+/* SIDE MENU
+-----------------------------------------*/
+
+.side-menu {border-right: 1px solid #ddd; background:#eee; overflow-y: scroll ; }
+.side-menu a.active {background:#fff; margin-right:-1px; font-weight:bold;width: 156px; }
+.side-menu a.active:hover {background:#fff;}
+
+.side-menu h3 {padding:10px; background:#F5F4ED;font-style:italic; margin:0px;  border-bottom:1px solid #eee;
+    font-size:17px;}
+.side-menu a {
+    border-bottom: 1px solid #ddd; border-top:1px solid #fff;
+    padding:8px 8px 8px 20px;  display:block;font-size:12px;
+    color: #666666; text-decoration:none; 
+}
+
+
+
+
+.side-menu a:hover {}
+.side-menu-pupils a {  padding:8px 8px 8px 20px;}
+
+
+/* DASHBOARD
+-----------------------------------------*/
+
+.dashboard-menu a {padding:12px; font-size:16px; line-height:1.4;}
+.dashboard-menu a:hover {background:#fff;}

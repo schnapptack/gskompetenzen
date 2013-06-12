@@ -1,0 +1,76 @@
+{% extends "base_print.html" %}
+
+
+
+{% block content %}
+
+<style>
+    .listbox-headline {font-weight:bold;}
+    .listbox-content {padding:0px;}
+    .skill-entry {border-bottom: 2px solid #ddd; padding: 12px 12px 12px 12px;}
+    .skill-entry.row2 {background:#eee;}
+    
+    .listbox {margin-bottom:5px;}
+    .listbox-content h2 {font-size:16px; font-style:italic; margin-bottom:4px;}
+    .skill-plot {float:left;}
+    
+</style>
+
+<div id="pupil-stats">
+    
+    <h1>Kompetenz-Entwicklung für {{pupil}}</h1>
+    
+    <div class="note">
+        <p>In dieser Übersicht werden nur Kompetenzen aufgeführt, die bereits bewertet wurden.</p>
+        
+        <div class="buttons">
+            <a href="{% url "pupil-statistic" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}">Zurück zum Porgramm</a>
+            <a href="#" onclick="window.print(); return false;" class="addlink">Drucken</a>
+        </div>
+    </div>
+
+    <br/>
+    {% include "gsaudit/skill_legend.html" %}
+    
+    {% for skill_group in skill_graph.skill_groups %}
+        {% if skill_group.is_headline %} 
+            <h1>{{ skill_group.skill }}</h2>
+        {% else %}       
+            <div class="listbox">
+                <div class="listbox-headline">{{ skill_group.group }}</div>
+                <div class="listbox-content">
+                    {% for skill in skill_group.skills %}
+                        {% if skill.audit_ratings|length %}
+                        <div class="skill-entry {% cycle "row1" "row2" %}">
+                           <h2 class="{{ skill.skill_level_type }}">{{ skill.name }}</h2>
+                           
+                           <div class="skill-plot" id="skill-plot-{{ skill.id }}" data-skill-development="{{ skill.development_json }}" style="height:150px; width:300px;"></div>
+                           <div class="clear"></div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+             </div>   
+        {% endif %}
+        
+   
+    {% endfor %}
+</div>
+
+
+<script>
+    $('.skill-plot').each(function(index, container) {
+        var $container = $(container)
+        var skill_dev = JSON.parse($container.attr('data-skill-development'))
+        if (skill_dev.length)
+            gsaudit.plots.skill_development($container.attr('id'), skill_dev)
+        
+    })
+</script>
+
+
+
+
+{% endblock %}
+
+ <div class="listbox-item {{ skill.skill_level_type }}">{{ skill.name }}{{ skill.skill_level_icon }} {{ skill.development }}</div>

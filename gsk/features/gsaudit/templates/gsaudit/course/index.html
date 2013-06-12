@@ -1,0 +1,165 @@
+{% extends "gsaudit/course/frame.html" %}
+{% load i18n %}
+
+{% block course_content %}
+
+    <h2>Willkommen Frau Müller in Ihrem Lehrauftrag {{ grade }} > {{ subject }}</h2>
+
+
+{% endblock %}
+
+
+	
+	<div id="gs_panel">
+	    <div id="gs_navigator">
+	       {# Klasse / Fach Menü #}
+			<div id="audit-panel_wrapper" class="panelWrapper expanded" style="">
+				<div id="audit-panel" class="panel expanded" style="height: auto; overflow: auto; display: block;">
+				    <div class="current_class">
+				        <a  data-autoload="true" data-partial="gs_content" href="/course/overview/{{grade.id}}_{{ subject.id }}/">{{grade}} / {{ subject }}</a>
+				    </div>
+					{% comment %}<div id="audit-panel_pad" class="pad" style="padding: 8px; display: block;">
+						<div class="menuWrapper"> <!-- hier die menu -->
+						</div>
+					</div>{% endcomment %}
+				</div>
+			</div>
+			<div class="horizontalHandle " style="display: block;">
+				<div class="handleIcon"></div>
+			</div>
+			
+			{# Beobachtungen #}
+			<div id="audit-panel_wrapper" class="panelWrapper expanded">
+				<div id="audit-panel_header" class="panel-header" style="display: block;">
+					<div id="audit-panel_headerCollapseBox" class="toolbox">
+						<div id="audit-panel_collapseToggle" class="panel-collapse icon16 panel-expanded" style="width: 16px; height: 16px;" title="Collapse Panel"></div>
+					</div>
+					<div id="audit-panel_headerContent" class="panel-headerContent evaluation-icon">
+						<h2 id="audit-panel_title" class="">Beobachtungen</h2>
+					</div>
+				</div>
+				<div id="audit-panel" class="panel expanded" style="height: auto; overflow: auto; display: block;">
+					<div id="audit-panel_pad" class="pad" style="display: block;">
+						<div class="menuWrapper"> <!-- hier die menu -->
+							<ul>
+								<li ><span><a href="{% url "audit-calendar_listing" grade_id=grade.id subject_id=subject.id %}" class="calendarlink" data-partial="gs_content">Kalender-Ansicht</a></span></li>
+								<li ><span><a href="{% url "audit-listing" grade_id=grade.id subject_id=subject.id %}" class="listlink" data-partial="gs_content">Listen-Ansicht</a></span></li>
+							    
+							</ul>
+						</div>
+					</div>
+					
+					<div style="padding:0px 10px 6px 26px; ">
+				        <span class="object-tools mini">
+				            <a href="{% url "audit-manage" grade_id=grade.id subject_id=subject.id %}" class="addlink"  data-partial="gs_content">Neue Beobachtung anlegen</a>
+			            </span>
+			        </div>
+					<div style="padding:0px 10px 6px 26px; ">
+				        <span class="object-tools mini">
+				            <a href="{% url "exam-manage" grade_id=grade.id subject_id=subject.id %}" class="addlink"  data-partial="gs_content">Neue Klassenarbeit anlegen</a>
+			            </span>
+			        </div>
+				</div>      
+			</div>
+			<div class="horizontalHandle " style="display: block;">
+				<div class="handleIcon"></div>
+			</div>
+			
+			{# Schüler-Menü #}
+			<div id="pupil-panel_wrapper" class="panelWrapper expanded">
+				<div id="pupil-panel_header" class="panel-header" style="display: block;">
+					<div id="pupil-panel_headerCollapseBox" class="toolbox">
+						<div id="pupil-panel_collapseToggle" class="panel-collapse icon16 panel-expanded" style="width: 16px; height: 16px;" title="Collapse Panel"></div>
+					</div>
+					<div id="pupil-panel_headerContent" class="panel-headerContent pupils-icon">
+						<h2 id="pupil-panel_title">Schüler</h2>
+					</div>
+				</div>
+				<div id="pupil-panel" class="panel expanded" style="height: 301px; overflow: auto; display: block;">
+					<div id="pupil-panel_pad" class="pad">
+						<div class="menuWrapper"> <!-- hier die menu -->
+							<ul>
+						        {% for participant in grade.get_participants %}
+						        	<li><span>
+						        			<a href="{% url "course-pupil_frame" grade_id=grade.id subject_id=subject.id pupil_id=participant.id %}" data-partial="gs_content" class="pupillink{% if participant.gender == "W" %} girl{% else %} boy{% endif %} " >{{ participant }}</a>
+						        		</span>
+						        	</li>
+						        {% endfor %}
+							</ul>
+						</div>
+					</div>        
+				</div>
+	            <!--  <a class="evaluationlink" href="{% url "audit-frame" grade_id=grade.id subject_id=subject.id %}" data-partial="gs_content">Beobachtungen</a> -->
+		    </div>
+			<div class="horizontalHandle " style="display: block;">
+				<div class="handleIcon"></div>
+			</div>
+
+			{# Klassenstatistik #}
+			<div id="statistic-panel_wrapper" class="panelWrapper expanded" style="">
+				<div id="statistic-panel_header" class="panel-header" style="display: block;">
+					<div id="statistic-panel_headerCollapseBox" class="toolbox">
+						<div id="statistic-panel_collapseToggle" class="panel-collapse icon16 panel-expanded" style="width: 16px; height: 16px;" title="Collapse Panel"></div>
+					</div>
+					<div id="statistic-panel_headerContent" class="panel-headerContent pupils-icon">
+						<h2 id="statistic-panel_title">Statistiken</h2>
+					</div>
+				</div>
+				<div id="statistic-panel" class="panel expanded" style="height: auto; overflow: auto; display: block;">
+					<div id="statistic-panel_pad" class="pad">
+						<div class="menuWrapper">
+							<ul>
+								<li ><span>
+									<a href="{% url "course-subject_statistics" grade_id=grade.id subject_id=subject.id %}" 
+										class="calendarlink" data-partial="gs_content">Klassenstatistik</a>
+								</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="horizontalHandle " style="display: block;">
+				<div class="handleIcon"></div>
+			</div>
+	    </div>
+	    <div id="gs_content"></div>
+	    <div id="gs_content_right"></div>
+	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".panel-collapse").live("click", function(){
+				if( $(this).hasClass("panel-expanded") ) {
+					var topParent = $(this).parents(".expanded");
+					topParent.find(".panel").slideUp(300);
+					
+					// replace expanded class with clopsed
+					topParent.removeClass("expanded");
+					topParent.addClass("collapsed");
+					
+					$(this).removeClass("panel-expanded");
+					$(this).addClass("panel-collapsed");
+					
+					$(this).attr("title", "Expand Pannel");
+				} else {
+					var topParent = $(this).parents(".collapsed");
+					topParent.find(".panel").slideDown(300);
+					
+					// replace expanded class with clopsed
+					topParent.removeClass("collapsed");
+					topParent.addClass("expanded");
+					
+					$(this).removeClass("panel-collapsed");
+					$(this).addClass("panel-expanded");
+					
+					$(this).attr("title", "Collapse Pannel");
+				}
+			});
+			
+			$('a.pupillink').click(function() {
+			    $('a.pupillink').removeClass('current')
+			    $(this).addClass('current')
+			})
+			
+		});
+	</script>

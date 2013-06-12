@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+
+
+{% block content %}
+ 
+
+    <div id="left" >
+            <div class="position" style="float:right;">
+                    {% block position%}{{grade}} | {{ subject }} {% endblock %}
+                </div>
+        <div class="side-menu">
+            {% block side_menu %}
+            {% comment %}<a href="{% url "course-index" grade_id=grade.id subject_id=subject.id %}" {% if course_dashboard %} class="active" {% endif %}>Übersicht</a>
+            {% endcomment %}
+            <a href="{% url "audit-listing" grade_id=grade.id subject_id=subject.id %}" {% if audit_view %} class="active" {% endif %} >Beobachtungen</a>
+            <a href="{% url "course-subject_statistics" grade_id=grade.id subject_id=subject.id %}" {% if subject_statistic_view %} class="active" {% endif %} >Klassenstatistik</a>
+            <h3>SchülerInnen</h3>
+            <div class="side-menu-pupils">
+                {% for participant in grade.get_participants %}
+			        <a href="{% url "pupil-statistic" grade_id=grade.id subject_id=subject.id pupil_id=participant.id %}" class="pupil-participant.gender {% if participant.id == pupil.id %}active{% endif %} " >{{ participant }}</a>
+                {% endfor %}
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+
+    <div id="right">
+        {% block course_content %} {% endblock %}
+    </div>
+
+    <div class="clear"></div>
+
+
+<script>
+$(function() {
+    $('.side-menu').css('height', $(window).height()-100)
+    $('#right').css('min-height', $(window).height() + 100)
+    
+    
+    /*var nav_height =  $('#global-nav').outerHeight()    
+    $(window).scroll(function() {
+        if($(window).scrollTop() > nav_height) {
+            $('#mainbar').addClass('fixed')
+              
+            $('#left').css({
+                position:'fixed',
+                top: $('#mainbar').height() +'px'
+            })
+            $('#right').css({
+                'margin-top': $('#mainbar').height() +'px',
+                'margin-left': '200px'
+            })
+            
+        } else {
+            $('#mainbar').removeClass('fixed')
+             $('#left').css({
+                position:'static'
+            })
+            $('#right').css('margin', 'inherit')
+        }
+    })
+        */
+})
+
+    
+</script>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{% overextends "media_includes.html" %}
+
+{% block admin_css %}
+    {{ block.super }}
+    <link href="{{ STATIC_URL }}gsadmin/gsadmin.css" type="text/css" rel="stylesheet">
+{% endblock %}
+

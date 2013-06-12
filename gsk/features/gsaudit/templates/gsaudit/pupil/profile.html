@@ -1,0 +1,32 @@
+{% extends "gsaudit/pupil/pupil_frame.html" %}
+{% load gsaudit_tags %}
+
+
+
+{% block pupil_content %}
+<style>
+    form.pupil_ta_info textarea {width:600px;}
+</style>
+
+<div class="profile">
+
+
+    
+        <p>Hier können Sie Notizen für <i>{{info.pupil}}</i> hinterlegen.</p>
+
+    <form class="pupil_ta_info" method="post" data-partial="pupil_content" action="{% url "pupil-ta_info" pupil_id=info.pupil.id subject_id=info.teaching_assignment.subject.id grade_id=info.teaching_assignment.grade.id %}">
+        {% csrf_token %}
+        <p>{{form.info}}</p>
+        
+        {%comment%}
+        Schriftliche Note:
+        <p>{{form.written_exam_rating}}</p>
+        {%endcomment%}
+        <input type="submit" value="Speichern" />
+    </form>
+
+
+	
+</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "gsaudit/audit/frame.html" %}
+
+
+{% block audit_content %}
+    
+
+    <h1> Wollen Sie die Beobachtung <span style="font-weight:bold;">{{ audit.name }} vom {{ audit.date|date:"l d M Y" }}</span> tatsächlich löschen?</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="buttons mega">
+            <input class="deletelink" type="submit" value="JA, Löschen"/>
+            <a class="abbrechen" href="{% url "audit-listing" grade_id=grade.id subject_id=subject.id %}">Nein, abbrechen</a>
+        </div>
+    </div>
+    
+
+        
+    
+{% endblock %}
+
+

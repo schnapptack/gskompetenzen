@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %} 
+
+{% block position%} Mein Account {% endblock %}
+
+{% block content %}
+
+
+<div class="page myaccount">
+    <h1>{{ teacher.first_name }} {{ teacher.last_name }}</h1>
+    
+    <table >
+        <tr>
+            <th>Benutzername:</th>
+            <td>{{ teacher.username }}</td>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td>{% if teacher.email %}{{ teacher.email }} {% else %} Keine Email hinterlegt {% endif %}</td>
+        </tr>
+    </table>
+    <br/><br/><br/><br/>
+    <div class="buttons mega"> <a href="{% url "gsaudit-password_change" %}">Passwort ändern</a></div>
+</div>
+
+
+{% endblock %}

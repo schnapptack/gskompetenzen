@@ -1,0 +1,13 @@
+django_productline
+django_productline.features.staticfiles
+django_productline.features.admin
+django_productline.features.jsbasics
+schnippjs
+cssbasics
+schnadmin
+schnadmin_sidenav
+users
+gsaudit
+gsadmin
+gsk
+django_productline.features.development

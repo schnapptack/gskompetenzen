@@ -1,0 +1,232 @@
+
+
+#gs_subject_tabs {}
+#gs_panel { }
+#gs_navigator {min-height:500px; width:259px; float:left; }
+#gs_content {background:#fff; padding:0px 22px; border-left: none;  margin-left: 258px;}
+#gs_content_right {}
+
+
+th.ratings span {margin-right:17px;}
+.skill_note a {display:inline; color:#999; font-size:11px; width:40px; float:right;}
+.skill_note textarea {display:none; width:180px; padding:4px; font-size:11px; height:40px;}
+
+.current_class a {display:block; padding:4px 12px; font-size:22px; font-weight:bold;  }
+.current_class a:hover {background:#eee; text-decoration:none;}
+
+
+
+
+.menuWrapper ul li {margin:0px; padding:0px;}
+.menuWrapper ul li a {
+    text-decoration:none; display:block; padding: 2px 12px 2px 12px;
+    background-color: #f5f3f3; border-bottom:1px solid #ddd;
+    margin-bottom: 1px; color:#666;
+}
+.menuWrapper ul li a:hover {background-color:#fff;}
+
+
+
+/* customizing schnuttons*/
+.object-tools.tabs a.current {background:#fff;}
+
+.object-tools.tabs_v a {
+	border-right: 2px solid #ddd;
+	background-color:#fff;
+}
+
+.object-tools.tabs_v a.current {
+	border-right: none;
+	background-color:#fff;
+}
+
+.object-tools.tabs_v ul li.panel {
+	background: url("images/collapse-expand.gif") no-repeat scroll left top transparent
+}
+
+.panel-header {
+    background: url("images/bg-panel-header.gif") repeat-x scroll 0 0 #F1F1F1;
+    border-bottom: 1px solid #D3D3D3;
+    height: 30px;
+    overflow: hidden;
+    position: relative;    
+}
+
+.panel-headerContent {
+    padding-top: 2px;
+}
+
+.toolbox {
+    float: right;
+    height: 24px;
+    margin-top: 3px;
+    overflow: hidden;
+    padding: 0 5px;
+    text-align: right;
+}
+
+.icon16 {
+    cursor: pointer;
+    margin: 4px 0 0 2px;
+}
+
+.panel-expanded {
+    background: url("images/collapse-expand.gif") no-repeat scroll left top transparent;
+}
+
+.panel-collapsed {
+    background: url("images/collapse-expand.gif") no-repeat scroll left -16px transparent;
+}
+
+.panel-button {
+	background: url("../schnuttons/document-new-8.png") no-repeat 0 50% transparent;
+	padding-left: 20px; 
+	float:right; 
+	font-size: 12px; 
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.panelWrapper .expanded {
+	border-top: 1px #ddd solid;
+	border-right: 1px #ddd solid;
+	border-bottom: 0px #ddd solid;
+	border-left: 1px #ddd solid;
+}
+
+.panel-header {
+	border-top: 1px #ddd solid;
+	border-right: 1px #ddd solid;
+	border-bottom: 0px #ddd solid;
+	border-left: 1px #ddd solid;
+}
+
+.panel-header h2 {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+	height: 22px;
+    margin: 0;
+    overflow: hidden;
+    padding: 3px 8px 0;
+}
+
+.horizontalHandle {
+    background: url("images/bg-handle-horizontal.gif") repeat-x scroll 0 0 #EEEEEE;
+    font-size: 1px;
+    height: 4px;
+    line-height: 1px;
+    overflow: hidden;
+}
+
+.horizontalHandle .handleIcon {
+    background: url("images/handle-icon-horizontal.gif") no-repeat scroll center center transparent;
+    font-size: 1px;
+    height: 4px;
+    line-height: 1px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.pupillink {
+	padding-left: 20px; 
+}
+
+.pupillink.current {background-color:#ff7800; color:#fff;}
+.pupillink.current:hover {background-color:#ff7800;}
+
+.boy {
+	background: url("../schnuttons/boy.png") no-repeat 8px 50% transparent; padding-left:30px !important;
+}
+
+.girl {
+	background: url("../schnuttons/girl.png") no-repeat 8px 50% transparent; padding-left:30px !important;
+}
+
+.evaluation-icon {
+	height: 22px;
+	padding-left: 20px;
+	background: url("../schnuttons/eye.png") no-repeat 5px 8px transparent;
+}
+
+.pupils-icon {
+	height: 22px;
+	padding-left: 20px;
+	background: url("../schnuttons/users.png") no-repeat 5px 8px transparent;
+}
+
+.subject-icon{
+	height: 22px;
+	padding-left: 20px;
+	background: url("../schnuttons/book.png") no-repeat 0 50% transparent;
+}
+
+.skillWrapper .value {
+	padding-left: 10px;
+}
+
+/* customizing calendar */
+#calendar .fc-event-skin {background:#ff7200; 
+    color: #fff;  border: 1px solid #ddd;  
+}
+
+#distribution {
+	width:200px;
+	position:fixed;
+	top:30px;
+	right:30px;
+	border: 1px solid #ddd;
+	padding:20px;
+	background:white;
+	z-index:1000;
+}
+
+.profile {
+}
+
+.profile>table {
+}
+
+.profile .image {
+	width:150px; 
+	height:200px; 
+	margin: 10px;
+	border: 1px #ccc solid;
+	float: left;
+}
+
+.profile table th {
+	text-align: right;
+	font-size: 115%;
+	font-weight: bold;
+	padding-top: 0;
+}
+
+.profile table th+th {
+	text-align: left;
+	padding-left: 10px;
+}
+
+.profile table th.title {
+	text-align: left;
+	padding-left: 10px;
+}
+
+.profile table .title {
+	background-color: #E8E8E8;
+}
+
+.profile table tr{
+	border-bottom: 1px #ccc solid;
+}
+
+.profile .label{
+	text-align: right;
+	width: 150px;
+	font-weight: bold;
+}
+
+.profile .value{
+	padding-left: 10px;
+	width: 300px;
+}

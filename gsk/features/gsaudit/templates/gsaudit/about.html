@@ -1,0 +1,70 @@
+{% extends "base_raw.html" %}
+{% load i18n %}
+
+
+{% block headstyle %}
+    <style>
+    table.about tr td {padding:22px; border: 1px solid #eee;}
+    </style>
+{% endblock %}
+
+
+{% block content %}
+<div class="content">
+    <h1>Über <i>GS-Kompetenzen</i></h1>
+
+
+    <div class="note">
+
+        <i>GS-Kompetenzen </i> ist eine gemeinschaftliche Entwicklung
+        der Theodor-Heuglin-Schule und der schnapptack GbR.
+    </div>
+
+    <table class="about">
+        <tr>
+            <td>
+                <a href="http://www.heuglin-schule.de" target="_blank"><img src="{{STATIC_URL}}img/ths.jpg"/></a>
+            </td>
+            <td>
+                <b>Theodor-Heuglin-Schule</b><br/>
+                Hirschlanden-Schöckingen<br/>
+                Leiterweg 70<br/>
+                71254 Ditzingen<br/>
+                <a href="http://www.heuglin-schule.de" target="_blank">Theodor-Heuglin-Schule</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="http://schnapptack.de" target="_blank"><img src="{{STATIC_URL}}img/schnapptack.png" /></a>
+            </td>
+            <td>
+                <b>schnapptack GbR</b><br/>
+                Nobelstrasse 58<br/>
+                70569 Stuttgart <br/>
+                <a href="http://schnapptack.de" target="_blank">schnapptack</a>
+            </td>
+        </tr>
+    </table>
+<br/>
+    <h2>GS-Kompetenzen steht auf den Schultern von Giganten:</h2>
+    
+    <ul style="list-style: disc;padding-left: 50px;">
+        <li><a href="http://www.debian.org">Debian Linux</a></li>
+        <li><a href="http://httpd.apache.org/">Apache HTTPD</a></li>
+        <li><a href="http://postgresql.org">PostgreSQL</a></li>
+        <li><a href="http://djangoproject.com">Django Webframework</a></li>
+        <li><a href="http://south.aeracode.org/">South Schema Migration Toolkit</a></li>
+        <li><a href="http://jquery.com">jquery Javascript Toolkit</a></li>
+        <li><a href="http://jqueryui.com">jquery UI Javascript Toolkit</a></li>
+        <li><a href="http://omnipotent.net/jquery.sparkline/">jquery sparklines</a></li>
+        <li><a href="http://raphaeljs.com">raphael.js</a></li>
+        <li><a href="http://www.jqplot.com/">jqplot</a></li>
+        <li><a href="http://github.com/henzk/schnipp">schnipp</a></li>
+        <li><a href="http://led24.de/iconset/">Led 24 Iconset</a></li>
+        <li><a href="http://www.fasticon.com">Icons by: FastIcon.com</a> (Boy and Girl Icons)</li>
+        
+    
+    </ul>
+
+</div>
+{% endblock %}

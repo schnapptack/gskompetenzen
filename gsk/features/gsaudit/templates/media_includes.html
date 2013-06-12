@@ -1,0 +1,41 @@
+{% overextends "media_includes.html" %}
+
+{% block private_css %}
+    {{ block.super }}
+    
+    <link href="{{STATIC_URL}}gsaudit/js/fullcalendar/fullcalendar.css" type="text/css" rel="stylesheet">
+    <link href="{{STATIC_URL}}gsaudit/js/jqplot/jquery.jqplot.css" type="text/css" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}gsaudit/css/old.css"> 
+     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}gsaudit/css/layout.css"> 
+     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}gsaudit/css/dashboard.css"> 
+    <!-- Include Print CSS -->
+    <link rel="stylesheet" href="{{STATIC_URL}}gsaudit/css/print.css" type="text/css" media="print" />
+    
+{% endblock %}
+
+
+{% block private_js %}
+    {{ block.super }}
+    <!-- Calendar -->
+    <script type="text/javascript" src="{{STATIC_URL}}gsaudit/js/fullcalendar/fullcalendar.min.js"></script>
+    <!-- Fixed header table -->
+    <script type="text/javascript" src="{{STATIC_URL}}gsaudit/js/fixedheadertable/lib/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}gsaudit/js/fixedheadertable/jquery.fixedheadertable.min.js"></script>
+    <link href="{{STATIC_URL}}gsaudit/js/fixedheadertable/css/defaultTheme.css" type="text/css" rel="stylesheet"> 
+    
+    <!-- sparkline -->
+    <script type="text/javascript" src="{{STATIC_URL}}gsaudit/js/jquery.sparkline.min.js"></script>
+    
+    <!-- jqplot -->
+    <script type="text/javascript" src="{{STATIC_URL}}gsaudit/js/jqplot/jquery.jqplot.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}gsaudit/js/jqplot/plugins/jqplot.barRenderer.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}gsaudit/js/jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+    
+    <!-- gsaudit -->
+    <script type="text/javascript" src="{{STATIC_URL}}gsaudit/js/src/gsaudit.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}gsaudit/js/src/gsaudit/formatter.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}gsaudit/js/src/gsaudit/plots.js"></script>
+
+    
+    
+{% endblock %}

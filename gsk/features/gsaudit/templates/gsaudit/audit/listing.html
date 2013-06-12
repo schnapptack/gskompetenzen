@@ -1,0 +1,31 @@
+{% extends "gsaudit/audit/frame.html" %}
+
+
+{% block audit_content %}
+    
+
+
+        
+
+    
+<div class="audit-listing">
+    {% if audits %}
+        {% for audit in audits %}
+            <div class="{% if audit.written_exam %}written-exam {% else %}  oral-exam {% endif %}" >
+                <a href="{% url "audit-evaluate" audit_id=audit.id %}" class="audit " >{{ audit.name }} | {{ audit.date|date:"d F Y" }}</a>
+                <a href="{% url "audit-delete" audit_id=audit.id %}" class="delete" >&nbsp;</a>
+                <a href="{% url "audit-manage" audit_id=audit.id grade_id=audit.assignment.grade.id subject_id=audit.assignment.subject.id %}" class="edit">&nbsp;</a>
+                <div class="clear"></div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="note">
+            Es existieren noch keine Beobachtungen.    
+        </div>
+    {% endif %}
+    
+</div>
+{% endblock %}
+
+
+

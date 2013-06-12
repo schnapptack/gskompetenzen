@@ -1,0 +1,8 @@
+include README.rst
+include LICENSE
+include MANIFEST.in
+recursive-include gskompetenzen/products/gsk/static *
+recursive-include gskompetenzen/features/gsaudit/static *
+recursive-include gskompetenzen/features/gsaudit/templates *
+recursive-include gskompetenzen/features/gsadmin/static *
+recursive-include gskompetenzen/features/gsadmin/templates *

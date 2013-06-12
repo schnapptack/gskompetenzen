@@ -1,0 +1,64 @@
+{% extends "base_ajax.html" %} {% load i18n %} {% block content %}
+<style>
+table.pupil-audits td {
+	vertical-align: top;
+}
+
+tr.skillgroup-skill {
+	padding-left: 20px;
+}
+
+tr.skillgroup-group td:before {content: "+ ";}
+tr.skillgroup-group td {
+	padding-left: 20px;
+}
+
+tr.skill td:before {content: "- ";}
+tr.skill td {
+	padding-left: 40px;
+}
+tr.audit td {
+	padding-left: 60px;
+}
+</style>
+
+<h1>{{pupil.first_name}} {{pupil.last_name}}</h1>
+
+<h2>Kompetenzentwicklung</h2>
+<table class="pupil-audits" style="width: 100%;">
+	<thead>
+		<tr>
+			<td colspan="4">Beobachtungen und Diagnosen</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for skill_group in skill_graph.skill_groups %} 
+			{% if skill_group.is_headline %}
+				<tr class="skillgroup-skill">
+					<td colspan="4">{{skill_group.skill}}</td>
+				</tr>
+			{% else %}
+				<tr class="skillgroup-group">
+					<td colstyle="padding-left:10px;"span="4">{{skill_group.group}}</td>
+				</tr>
+				{% for skill in skill_group.skills %}
+					{% if skill.pupil_audits %}
+					<tr class="skill">
+						<td class="skill" colspan="4">{{ skill.name }}</td>
+					</tr>
+					{% endif %}
+					{% for audit in skill.pupil_audits %}
+						<tr class="audit">
+							<td>{{ audit.audit.date|date:"SHORT_DATE_FORMAT" }}</td>
+							<td style="padding-left:10px;">{% if audit.audit.written_exam %}Schriftlich{% else %}Beobachtung{% endif %}</td>
+							<td style="padding-left:10px;">{{ audit.audit.name }}</td>
+							<td style="padding-left:10px;">{{ audit.rating }}</td>
+							<td style="padding-left:10px;">{{ audit.note }}</td>
+						</tr>
+					{% endfor %} 
+				{% endfor %} 
+			{% endif %} 
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

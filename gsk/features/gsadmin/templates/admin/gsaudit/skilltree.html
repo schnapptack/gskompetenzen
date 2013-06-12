@@ -1,0 +1,77 @@
+{% extends "admin/base_site.html" %}
+{% load mptt_tags %}
+
+
+{% block content %} 
+    <div style="padding-right:22px">
+        <h1><a href="{% url "gsadmin-skilltrees" %}">Kompetenzbäume</a> / {{ skilltree.name }}</h1>
+        
+        <div class="buttons ">
+            <a  href="{% url "admin:gsaudit_skill_add" %}?root_id={{ skilltree.id }}">+ Kompetenz hinzufügen</a>
+        </div>
+        <div class="clear"></div>
+        <br/>
+        
+        <div class="schnadmin-tree">
+            <div class="root"> <a href="{% url "admin:gsaudit_skill_change" skilltree.id %}">{{ skilltree.name }}</a></div>
+            <ul class="skilltree">
+                {% recursetree skilltree.get_descendants %}
+                    <li>
+                        <div class="node {% if not node.is_leaf_node %}collapsable{% endif %}">
+                           
+                            <div class="node-tools">
+                                <a href="{% url "admin:gsaudit_skill_delete" node.id %}">löschen</a>
+                            </div>
+                            {% if not node.is_leaf_node %}<div class="node-toggler  ">{% if not node.is_leaf_node %}+ {% endif %}</div>{% endif %}
+                            <div class="node-name"> <a href="{% url "admin:gsaudit_skill_change" node.id %}">{{ node.name }}</a></div>
+                            <div class="clear"></div>
+                        </div>
+                        {% if not node.is_leaf_node %}
+                            <ul class="children">
+                                {{ children }}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endrecursetree %}
+            </ul>
+        </div>
+        
+        <script>
+            $('div.collapsable .node-toggler').click(function() {
+                var elem = $(this)
+                var ul = elem.closest('li').find('ul')
+                if (ul.css('display') == 'none') {
+                    $(ul[0]).show('blind')
+                } else {
+                    ul.hide('blind')
+                }
+                
+            })
+        </script>
+
+        <style>
+            ul.skilltree {margin:0px; padding:0px;}
+            ul.skilltree > li {margin:0px;}
+            ul.skilltree li {list-style:none; padding:0px;}
+            ul.skilltree li ul li {margin-left:33px;}
+            
+            .node {cursor:pointer; color:#999; font-size:14px; background:#fbfbfb; border-bottom:1px solid #eee; border-top:1px solid #fff;}
+            .node div, .node span {padding:8px 12px 8px 12px;}
+            .node .clear {padding:0px;}
+            
+            .node-tools {float:right; font-size:11px;} 
+            .node-tools span {margin-left:4px;}
+            
+            .node-toggler {float:left; padding: 0px 12px 0px 12px; border-right:1px solid #ddd; background:#f5f5f5; }
+            .node .node-name {float:left; width:400px; padding-left:30px; }
+            .node.collapsable .node-name {padding-left:12px; font-weight:bold;}
+            
+            /* ------------------------- */
+            
+            .schnadmin-tree .root {background:#fbfbfb; padding:12px; border: 1px solid #eee; font-size:17px;
+                border-bottom:1px solid #eee; font-weight:bold;}
+            
+        </style>
+
+</div>
+{% endblock %}

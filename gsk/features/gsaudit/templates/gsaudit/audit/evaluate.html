@@ -1,0 +1,115 @@
+{% extends "gsaudit/audit/frame.html" %}
+{% load i18n %}
+
+{% block tabs %}
+    {{ block.super }}
+    <a class="active" href="javascript:return false;">{{ audit.name }} | {{ audit.date|date:"l, j. F Y" }}</a>
+{% endblock %}
+
+{% block course_content %}
+
+    <style>
+        .scroll-table-container {height:600px; width:100%;}
+        #evaluation-form .submit-row {padding:12px;  margin-top:2px; background:#f5f5f5;}
+    </style>
+    
+    {% include "gsaudit/skill_legend.html" %}
+    
+    <br/>
+    
+    <form method="post" action="{% url "audit-evaluate" audit_id=audit.id %}" id="evaluation-form">
+         <div class="submit-row buttons">
+            <input type="submit" name="submit" value="Evaluation speichern"  />
+              <a href="{% url "audit-manage" audit_id=audit.id grade_id=audit.assignment.grade.id subject_id=audit.assignment.subject.id %}">Bearbeiten</a>
+        </div>
+        <div>
+            {% csrf_token %}
+            <div class="scroll-table-container">
+                {{ eval_form.render }}
+            </div>
+            <div class="submit-row">
+                <input type="submit" name="submit" value="Evaluation speichern"  />
+            </div>
+        </div>
+      
+    </form>
+   
+
+<script type="text/javascript">
+$(document).ready(function() {
+    var form = $('table.eval-form')
+    
+    /* apply fixed header table
+    -------------------------------------------------------------- */
+    form.fixedHeaderTable({fixedColumn:true})
+    
+    /* apply eval notes
+    -------------------------------------------------------------- */
+   
+    
+    
+    
+    
+
+    var eval_tools = form.find('.skill-tools')
+    
+    var color_note_link = function(textarea, note_link) {
+        // apply trigger higlighting
+        if (textarea.val().trim() == '') {
+            note_link.css('color', '#888')
+        } else {
+            note_link.css({'color':'green', 'opacity': 1})           
+        }
+    }
+    
+    eval_tools.each(function(index, container) {
+        container = $(container)
+        var textarea = container.find('textarea')
+        var trigger = container.find('.eval-note')
+        var diagnosis = container.find('.eval-diagnosis')
+
+        color_note_link(textarea, trigger)        
+        
+        trigger.click(function() {
+            var d = schnipp.ui.Dialog().init()
+            
+            var dialog_content = $('\
+                <div>\
+                    <h2></h2>\
+                    <textarea></textarea>\
+                    <div class="buttons"><a href="#">Übernehmnen</a></div>\
+                </div>\
+            ')
+            var h2 = dialog_content.find('h2')
+            h2.html(trigger.attr('data-skill-name'))
+            var t = dialog_content.find('textarea')
+            t.val(textarea.val())
+            var save = dialog_content.find('.buttons a')
+            save.click(function() {
+                textarea.val(t.val())
+                d.close()
+                color_note_link(textarea, trigger)
+                return false
+            })
+            
+            d.set_content(dialog_content)
+            d.set_title(trigger.attr('data-pupil-name'))
+            d.show()
+        })
+        
+        
+    })
+    
+    
+    form.find('.eval-note').click(function() {
+        
+    })
+    
+    
+    
+    
+
+})
+</script>
+
+{% endblock %}

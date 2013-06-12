@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %} 
+
+{% block position%} Lehraufträge {% endblock %}
+
+ 
+{% block content %}
+
+                        
+
+<div class="page">
+    <h1>Hallo {{ teacher.first_name }}</h1>
+    <p>Auf dem Dashboard siehst du alle Deine Lehraufträge.</p>
+         
+        {% for ta in teaching_assignments %}
+            <div class="ta-dashboard" style="height:500px;">
+                <h1>
+                    <a class="ta-subject" href="{% url "audit-calendar_listing" grade_id=ta.grade.id subject_id=ta.subject.id %}" title="{{ subject }} in der Klasse {{ grade }} öffnen">
+                    {{ ta.grade }} | {{ ta.subject }}</a>
+                </h1>
+    
+                <div>{{ ta.get_participants|length }} SchülerInnen, {{ ta.audit_set.all|length }} Beobachtungen </div>
+            </div>
+        {% endfor %}
+        
+    
+</div>
+{% endblock %}
+
+  <h1>Was ist neu?</h1>
+        
+        <ul>
+            <li>Neue Benutzeroberfläche</li>
+            <li>Kompetenzen: Farbliche Hervorhebung von Förder- und Begabten-Kompetenzen</li>
+            <li>Beobachtungen: Kompetenz- und Schüler-Spalten der Beobachtungsmatrix bleiben stehen beim Scrollen.</li>
+            <li>Auswertung: Darstellung der kontinuierlichen Kompetenzentwicklung von Schülerinnen und Schülern.</li>
+            <li>Auswertung: Druckfunktion für Kompetenzentwicklung</li>
+        </ul>
+        
+        

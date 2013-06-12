@@ -1,0 +1,43 @@
+
+
+
+<div id="calendar" "></div>
+
+<script type='text/javascript'>
+	$(document).ready(function() {
+        var add_data_partial = function() {        
+            // add data-partial attr to all calendar links
+            $('#calendar a.fc-event').attr('data-partial', 'gs_content')
+        }
+
+        var audits = {{events|safe}};
+       
+		$('#calendar').fullCalendar({
+			events: audits,
+			aspectRatio: 2.5,
+            firstDay: 1,
+            monthNames: ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+            monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
+            dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+            dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+            buttonText: {
+                prev: '&nbsp;&#9668;&nbsp;',
+                next: '&nbsp;&#9658;&nbsp;',
+                prevYear: '&nbsp;&lt;&lt;&nbsp;',
+                nextYear: '&nbsp;&gt;&gt;&nbsp;',
+                today: 'heute',
+                month: 'Monat',
+                week: 'Woche',
+                day: 'tag'
+            },
+            viewDisplay: function(view) {
+                add_data_partial()  
+            },
+            eventRender: function(event, element) {
+                if (event.written_exam)
+                    element.addClass('written-exam')
+            }
+		});
+	});
+</script>
+

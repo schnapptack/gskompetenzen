@@ -6,6 +6,7 @@ from mptt.fields import TreeForeignKey
 from jsonfield import JSONField
 from django.utils.safestring import mark_safe
 from django.utils.html import escape
+from django.conf import settings
 
 GENDER_CHOICES = (('W', 'weiblich',),('M', 'männlich',))
 
@@ -55,12 +56,12 @@ class Teacher(AbstractUser):
     class AppConfig(UserAppConfig):
         APP_LABEL = 'gsaudit' 
         URL_PREFIX = 'teachers'
-        FROM_EMAIL = 'system@schnapptack.de'
+        FROM_EMAIL = settings.DEFAULT_FROM_EMAIL
         ACCOUNT_CONFIRM_EMAIL_TITLE = 'Ihr Zugang für GS-Kompetenzen'
         LOGIN_REDIRECT_URL = '/'
         LOGOUT_REDIRECT_URL = '/teachers/login/'
-        USE_USER_EMAIL = False
-        ADDITIONALLY_SEND_TO = ['info@schnapptack.de']
+        USE_USER_EMAIL = True
+        ADDITIONALLY_SEND_TO = []
         
     class Meta:
         verbose_name = 'LehrerIn'

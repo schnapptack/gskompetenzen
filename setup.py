@@ -20,7 +20,6 @@ setup(
     url="https://github.com/schnapptack/gskompetenzen",
     packages=find_packages(),
     package_dir={'gskompetenzen': 'gskompetenzen'},
-    package_data={'gskompetenzen': []},
     include_package_data=True,
     scripts=[],
     zip_safe=False,

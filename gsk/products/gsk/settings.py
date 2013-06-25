@@ -10,7 +10,7 @@ refine_MEDIA_ROOT = FILES_DIR + '/media/'
 
 def refine_INSTALLED_APPS(original):
     return [
-        'ths',
+        'gsk',
     ] + list(original)
 
 

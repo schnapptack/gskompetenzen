@@ -1,6 +1,7 @@
 django_productline
 django_productline.features.staticfiles
 django_productline.features.admin
+emailing
 schnippjs
 cssbasics
 jsbasics

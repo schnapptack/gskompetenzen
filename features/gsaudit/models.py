@@ -97,8 +97,8 @@ users.register(Teacher,dict(
     CONFIRM_EMAIL_SUBJECT = 'Ihr Zugang für GS-Kompetenzen',
     LOGIN_REDIRECT_URL = '/',
     LOGOUT_REDIRECT_URL = '/teachers/login/',
-    USE_USER_EMAIL = False,
-    ADDITIONALLY_SEND_TO = ['michael@schnapptack.de',],
+    USE_USER_EMAIL = True,
+    ADDITIONALLY_SEND_TO = [],
 ))        
 
 class Grade(BaseModel):

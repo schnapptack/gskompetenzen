@@ -1,0 +1,48 @@
+{% overextends "admin/base_site.html" %}
+
+
+{% block extrahead %}
+{{ block.super }}
+
+<script type="text/javascript">
+$(function() {
+    schnadmin.sidenav.update_current_link({
+        'dashboard': [
+            '{% url "admin:index" %}$'
+        ],
+        'school': [
+            '{% url "admin:gsaudit_school_changelist" %}',
+            '{% url "admin:gsaudit_school_add" %}',
+         
+        ],
+        'grade': [
+            '{% url "admin:gsaudit_grade_changelist" %}',
+            '{% url "admin:gsaudit_grade_add" %}',
+        ],
+        'pupil': [
+            '{% url "admin:gsaudit_pupil_changelist" %}',
+            '{% url "admin:gsaudit_pupil_add" %}',
+        ],
+        'skill': [
+            '{% url "admin:gsaudit_skill_add" %}',
+            '{% url "admin:gsaudit_skill_changelist" %}'
+        ],
+        'teacher': [
+            '{% url "admin:gsaudit_teacher_add" %}',
+            '{% url "admin:gsaudit_teacher_changelist" %}'
+        ]
+    })
+})
+</script>
+{% endblock %}
+
+{% block sidenav %}
+    <a href="{% url "admin:index" %}" class="gsaudit-dashboard" data-link-id="dashboard"><span></span>Dashboard</a>
+    <a href="{% url "admin:gsaudit_school_changelist" %}" class="gsaudit-school-icon" data-link-id="school"><span></span>School</a>
+    <a href="{% url "admin:gsaudit_grade_changelist" %}" class="gsaudit-grade-icon" data-link-id="grade" ><span></span>Grade</a>
+    <a href="{% url "admin:gsaudit_teacher_changelist" %}" class="gsaudit-teacher-icon" data-link-id="teacher"><span></span>Teacher</a>
+    <a href="{% url "admin:gsaudit_pupil_changelist" %}" class="gsaudit-pupil-icon" data-link-id="pupil"><span></span>Pupil</a>
+    <a href="{% url "admin:gsaudit_skill_changelist" %}" class="gsaudit-skill-icon" data-link-id="skill"><span></span>Skill</a>
+
+{% endblock %}
+admin:gsaudit_school

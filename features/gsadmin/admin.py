@@ -2,7 +2,7 @@
 from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
 from users.admin import UserAdmin
-from gsaudit.models import Grade, TeachingAssignment, Pupil, Skill, Teacher
+from gsaudit.models import Grade, TeachingAssignment, Pupil, Skill, Teacher,School
 from gsadmin.forms import TaAdminForm, GradeAdminForm, PupilAdminForm
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
@@ -134,7 +134,7 @@ class TeacherAdmin(UserAdmin):
 
 
     
-    
+admin.site.register(School)
 admin.site.register(Grade, GradeAdmin)
 admin.site.register(Pupil, PupilAdmin)
 admin.site.register(Skill, SkillAdmin)

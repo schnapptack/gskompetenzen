@@ -1,7 +1,8 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
-from users.models import AbstractUser, UserAppConfig
+from users.models import AbstractUser
 import mptt
+import users
 from mptt.fields import TreeForeignKey
 from jsonfield import JSONField
 from django.utils.safestring import mark_safe
@@ -52,17 +53,7 @@ class Teacher(AbstractUser):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, verbose_name='Geschlecht')
     phone = models.CharField(max_length=255, null=True, blank=True, verbose_name='Telefon')
     school = models.ForeignKey(School, verbose_name='Schule')
- 
-    class AppConfig(UserAppConfig):
-        APP_LABEL = 'gsaudit' 
-        URL_PREFIX = 'teachers'
-        FROM_EMAIL = settings.DEFAULT_FROM_EMAIL
-        ACCOUNT_CONFIRM_EMAIL_TITLE = 'Ihr Zugang für GS-Kompetenzen'
-        LOGIN_REDIRECT_URL = '/'
-        LOGOUT_REDIRECT_URL = '/teachers/login/'
-        USE_USER_EMAIL = True
-        ADDITIONALLY_SEND_TO = []
-        
+
     class Meta:
         verbose_name = 'LehrerIn'
         verbose_name_plural = 'LehrerInnen'
@@ -97,7 +88,18 @@ class Teacher(AbstractUser):
         else:
             s+= 'Herr '
         return s + self.get_salutation()
-        
+
+users.register(Teacher,dict(
+    APP_LABEL = 'gsaudit',
+    URL_PREFIX = 'teachers',
+    FROM_EMAIL = settings.DEFAULT_FROM_EMAIL,
+    LOGIN_URL = '/teachers/login/',
+    CONFIRM_EMAIL_SUBJECT = 'Ihr Zugang für GS-Kompetenzen',
+    LOGIN_REDIRECT_URL = '/',
+    LOGOUT_REDIRECT_URL = '/teachers/login/',
+    USE_USER_EMAIL = True,
+    ADDITIONALLY_SEND_TO = [],
+))        
 
 class Grade(BaseModel):
     name = models.CharField(max_length=255)

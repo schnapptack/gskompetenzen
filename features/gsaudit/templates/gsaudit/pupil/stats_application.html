@@ -2,10 +2,7 @@
 
 {% block pupil_content %}
 
-    <div class="buttons float-right">
-        <a class="printlink"  href="{% url "pupil-print_statistic" pupil_id=pupil.id subject_id=subject.id grade_id=grade.id %}">Druckansicht</a>
-    </div>
-
+   
     {% include "gsaudit/pupil/stats.html" %}
     
     

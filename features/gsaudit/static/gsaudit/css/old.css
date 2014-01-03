@@ -37,7 +37,7 @@ body {margin:0px; font-family: arial, sans-serif; color:#646464; font-size:13px;
 #mainbar {background:#eee;}
 .mainbar-tabs {float:left; }
 .mainbar-tabs a {
-    padding:21px; border-right:1px solid #ddd; border-left:1px solid #fff; background:#eee;  display:block; 
+    padding:21px; border-right:1px solid #ddd;  background:#eee;  display:block; 
     float:left; text-decoration:none; font-size:13px; color: #888}
 .mainbar-tabs a.active {background:#fff; font-weight:bold;}
 
@@ -67,7 +67,7 @@ table.data td, table.data th {padding:6px; border-bottom:1px solid #ddd; font-si
 
 .audit-listing div {}
 .audit-listing a {
-    background:#fbfbfb; border:1px solid #eee; border-top:0px; border-left:0px; margin: 0px 1px 1px 0px; 
+    background:#eee; border:1px solid #ddd; border-top:0px; border-left:0px; margin: 0px 1px 1px 0px; 
     padding:12px; font-size: 13px; float:left; text-decoration:none;}
 
     
@@ -176,6 +176,6 @@ table.subject-stats td {border-bottom:1px solid #eee; font-size:12px; padding:6p
 /* Content Styling
 -----------------------------------------*/
 
-a {color: #25612D}
+a {color:#5b80b2;}
 
 

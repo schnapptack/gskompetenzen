@@ -13,5 +13,11 @@ def refine_TEMPLATE_CONTEXT_PROCESSORS(original):
     ]
 
 
-refine_LOGIN_URL = '/teachers/login/'
+
+refine_LOGIN_URL = '/login/'
+refine_LOGIN_REDIRECT_URL = '/'
+refine_LOGOUT_REDIRECT_URL = '/login/'
+
+
+refine_LANGUAGE_CODE = 'de-de'
 

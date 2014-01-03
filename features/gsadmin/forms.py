@@ -15,7 +15,8 @@ class GradeAdminForm(forms.ModelForm):
     participants = forms.ModelMultipleChoiceField(
         queryset=Pupil.objects.all(), 
         widget=forms.SelectMultiple(attrs={'class': 'chosen',}),
-        label='Klassenteilnehmer'
+        label='Klassenteilnehmer',
+        required=False
     )
     
     class Meta:

@@ -3,8 +3,40 @@
 
 {% block course_content %}
 
-    <h2>Willkommen Frau Müller in Ihrem Lehrauftrag {{ grade }} > {{ subject }}</h2>
+    <h2> Lehrauftrag: Klasse {{ grade }}, Fach {{ subject }}</h2>
+  
+    <br/><br/>
+    <table class="dashboard-table" style="float:left;" >
+        <tr>
+            <th>Klassengröße</th>
+            <td>{{ pupils|length }}</td>
+        </tr>
+        <tr>
+            <th>Mündliche Beobachtungen</td>
+            <td>{{ oral_audits|length }} </td>
+        </tr>
+        <tr>
+            <th>Schriftliche Lernstandserbebungen</th>
+            <td>{{ written_audits|length }}</td>
+        </tr>
+    </table>
+    <div style="Margin-left: 33px; float:left; color:#999; font-size:17px; width:555px; padding:22px; background:#f5f5f5; border:1px solid #ddd;">
+        <span>Es wurden</span>
+        <span style="font-size:68px; font-weight:bold">{{ pas_count }}</span>
+        <span style="">Bewertungen in insgesamt</span>
+        <span style="font-size:48px; font-weight:bold">{{ audits|length }}</span>
+        <span>Beobachtungen und Lernstandserbebungen erfasst.</span>
+    </div>
+    
+    
+    
+    
+    
 
+<style>
+    .dashboard-table th,     
+    .dashboard-table td {padding:12px; border:1px solid #ddd; text-align:left;}
+</style>
 
 {% endblock %}
 

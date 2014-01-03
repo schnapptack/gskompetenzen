@@ -1,14 +1,19 @@
-    <h1>Kompetenzentwicklung <i>{{ pupil }}</i></h1>
 
     Beobachtungen inkl. Diagnosen
-    <br/><br/>
     
     <div class="float-right">
-        <input type="checkbox" checked="True" id="show-rated-only">
-        <label for="show-rated-only">Nur bewertete Kompetenzen anzeigen</label>
-    </div>
+         <div class="buttons small ">
+            <a class="printlink"  href="{% url "pupil-print_statistic" pupil_id=pupil.id subject_id=subject.id grade_id=grade.id %}">Druckansicht</a>
+         </div>
+        <br/>
     
-     {% include "gsaudit/skill_legend.html" %}
+        {% include "gsaudit/skill_legend.html" %}
+    </div>
+   
+   <br/> <br/> 
+   <input type="checkbox"  id="show-rated-only"> 
+   <label for="show-rated-only"><a>Nur bewertete anzeigen</a></label>
+     
     <div id="distribution-plot-container">
         <div class="plot-headline"></div>
         <div id="distribution-plot"></div>
@@ -50,7 +55,7 @@
                 $('.listbox-item.no-data-yet').show()
             }
         }
-        apply_skill_filter() 
+        //apply_skill_filter() 
         
         $('#show-rated-only').click(function() {
             apply_skill_filter()            

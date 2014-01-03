@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from gsaudit.models import Grade, Pupil, Subject, Audit, TeachingAssignment
+from gsaudit.models import Grade, Pupil, Subject, Audit, TeachingAssignment, PupilAuditSkill
 from gsaudit.forms import TeachingAssignmentForm
 from gsaudit import helpers
 from gsaudit.models import GradeParticipant
@@ -22,8 +22,13 @@ def index(request, subject_id=0, grade_id=0):
     other_subjects = request.teacher.get_grade_subjects(grade_id)
     pupils = grade.get_participants()
     audits = Audit.objects.filter(assignment=assignment).order_by('-date')
+    oral_audits = audits.filter(written_exam=False)
+    written_audits = audits.filter(written_exam=True)
     pupil_skill_matrix = []
     #helpers.PupilSkillMatrix(grade, subject)
+    
+    pas_count = PupilAuditSkill.objects.filter(audit__assignment__grade=grade, audit__assignment=assignment).count()
+    
     
     return render(request, 'gsaudit/course/index.html', 
         dict(
@@ -32,8 +37,11 @@ def index(request, subject_id=0, grade_id=0):
             other_subjects=other_subjects,
             pupils=pupils,
             audits=audits,
+            oral_audits=oral_audits,
+            written_audits=written_audits,
             pupil_skill_matrix=pupil_skill_matrix,
-            course_dashboard=True
+            course_dashboard=True,
+            pas_count=pas_count
         )
     )
 

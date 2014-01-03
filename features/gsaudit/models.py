@@ -93,10 +93,10 @@ users.register(Teacher,dict(
     APP_LABEL = 'gsaudit',
     URL_PREFIX = 'teachers',
     FROM_EMAIL = settings.DEFAULT_FROM_EMAIL,
-    LOGIN_URL = '/teachers/login/',
+    #LOGIN_URL = '/teachers/login/',
     CONFIRM_EMAIL_SUBJECT = 'Ihr Zugang für GS-Kompetenzen',
-    LOGIN_REDIRECT_URL = '/',
-    LOGOUT_REDIRECT_URL = '/teachers/login/',
+    #LOGIN_REDIRECT_URL = '/',
+    #LOGOUT_REDIRECT_URL = '/teachers/login/',
     USE_USER_EMAIL = True,
     ADDITIONALLY_SEND_TO = [],
 ))        

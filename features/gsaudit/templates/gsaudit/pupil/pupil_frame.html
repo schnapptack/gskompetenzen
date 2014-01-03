@@ -2,15 +2,24 @@
 {% load gsaudit_tags %}
 
 
-{% block tabs %}
-   <a href="{% url "pupil-statistic" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_stats_view %} class="active"{% endif %}>Schüler-Statistik</a>
-   <a href="{% url "pupil-ta_info" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_info_view %} class="active"{% endif %}>Notizen</a>
-   <a href="{% url "pupil-eval_info" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_eval_info_view %} class="active"{% endif %}>Auswertung</a>
-{% endblock %}
 
 
 {% block course_content %}
 <div id="pupil_content">
-    {% block pupil_content %} {% endblock %}
+    <h1> <i>{{ pupil }}</i></h1>
+    <div class="schnadmin-tabs">
+        <a href="{% url "pupil-statistic" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_stats_view %} class="active"{% endif %}>Kompetenzentwicklung</a>
+        <a href="{% url "pupil-ta_info" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_info_view %} class="active"{% endif %}>Notizen</a>
+        <a href="{% url "pupil-eval_info" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_eval_info_view %} class="active"{% endif %}>Auswertung</a>
+    </div>
+    <div style="padding:12px 0px 0px 22px;">
+        {% block pupil_content %} {% endblock %}
+    </div>
 </div>
+
+<style>
+    .schnadmin-tabs a{font-size:13px; text-decoration:none; }
+
+</style>
+
 {% endblock %}

@@ -2,7 +2,7 @@
 from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
 from users.admin import UserAdmin
-from gsaudit.models import Grade, TeachingAssignment, Pupil, Skill, Teacher,School
+from gsaudit.models import Grade, TeachingAssignment, Pupil, Skill, Teacher,School, Subject
 from gsadmin.forms import TaAdminForm, GradeAdminForm, PupilAdminForm
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
@@ -25,12 +25,6 @@ class GradeAdmin(admin.ModelAdmin):
     inlines = [TaAdmin]
     form = GradeAdminForm
     fields = ['name', 'school', 'participants']    
-    
-
-   
-
-# ------------------------------------------------------------------
-
 
 class PupilAdmin(admin.ModelAdmin):
     
@@ -38,10 +32,6 @@ class PupilAdmin(admin.ModelAdmin):
     model = Pupil
     
     fields = ['first_name', 'last_name', 'gender', 'grades', 'school', 'note']
-
-
-
-# ------------------------------------------------------------------
 
 
 class SkillAdmin(MPTTModelAdmin):
@@ -127,18 +117,24 @@ class SkillAdmin(MPTTModelAdmin):
 
 class TeacherAdmin(UserAdmin):
     fieldsets = [
-         ('main', {
+         ('', {
             'fields':  ('gender', 'first_name', 'last_name', 'email', 'school', 'username', 'is_active')
         }),
     ]
 
 
+class SchoolAdmin(admin.ModelAdmin):
+    fields = ['name']
     
-admin.site.register(School)
+class SubjectAdmin(admin.ModelAdmin):
+    pass
+    
+admin.site.register(School, SchoolAdmin)
 admin.site.register(Grade, GradeAdmin)
 admin.site.register(Pupil, PupilAdmin)
 admin.site.register(Skill, SkillAdmin)
 admin.site.register(Teacher, TeacherAdmin)
+admin.site.register(Subject, SubjectAdmin)
 
 
 

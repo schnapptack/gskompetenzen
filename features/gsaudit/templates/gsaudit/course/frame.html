@@ -1,26 +1,24 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-
-
+{% block tabs %}
+        <a id="selected-grade">{% block position%}{{grade}} | {{ subject }} {% endblock %}</a>
+        <a href="{% url "audit-listing" grade_id=grade.id subject_id=subject.id %}" {% if audit_view %} class="active" {% endif %} >Beobachtungen</a>
+        <a href="{% url "course-subject_statistics" grade_id=grade.id subject_id=subject.id %}" {% if subject_statistic_view %} class="active" {% endif %} >Klassenstatistik</a>
+{% endblock %}
 
 {% block content %}
- 
-
+   
+            
     <div id="left" >
-            <div class="position" style="float:right;">
-                    {% block position%}{{grade}} | {{ subject }} {% endblock %}
-                </div>
+       
         <div class="side-menu">
             {% block side_menu %}
-            {% comment %}<a href="{% url "course-index" grade_id=grade.id subject_id=subject.id %}" {% if course_dashboard %} class="active" {% endif %}>Übersicht</a>
-            {% endcomment %}
-            <a href="{% url "audit-listing" grade_id=grade.id subject_id=subject.id %}" {% if audit_view %} class="active" {% endif %} >Beobachtungen</a>
-            <a href="{% url "course-subject_statistics" grade_id=grade.id subject_id=subject.id %}" {% if subject_statistic_view %} class="active" {% endif %} >Klassenstatistik</a>
-            <h3>SchülerInnen</h3>
+           <a href="{% url "course-index" grade_id=grade.id subject_id=subject.id %}" {% if course_dashboard %} class="active" {% endif %}>Übersicht</a>
+            <div style="padding:22px; background:#fff;">Schülerinnen & Schüler</div>
             <div class="side-menu-pupils">
                 {% for participant in grade.get_participants %}
-			        <a href="{% url "pupil-statistic" grade_id=grade.id subject_id=subject.id pupil_id=participant.id %}" class="pupil-participant.gender {% if participant.id == pupil.id %}active{% endif %} " >{{ participant }}</a>
+		            <a href="{% url "pupil-statistic" grade_id=grade.id subject_id=subject.id pupil_id=participant.id %}" class="pupil-participant.gender {% if participant.id == pupil.id %}active{% endif %} " >{{ participant }}</a>
                 {% endfor %}
             </div>
             {% endblock %}
@@ -32,7 +30,6 @@
     </div>
 
     <div class="clear"></div>
-
 
 <script>
 $(function() {

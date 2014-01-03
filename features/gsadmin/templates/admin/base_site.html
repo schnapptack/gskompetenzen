@@ -37,12 +37,12 @@ $(function() {
 {% endblock %}
 
 {% block sidenav %}
-    <a href="{% url "admin:index" %}" class="gsaudit-dashboard" data-link-id="dashboard"><span></span>Dashboard</a>
-    <a href="{% url "admin:gsaudit_school_changelist" %}" class="gsaudit-school-icon" data-link-id="school"><span></span>School</a>
-    <a href="{% url "admin:gsaudit_grade_changelist" %}" class="gsaudit-grade-icon" data-link-id="grade" ><span></span>Grade</a>
-    <a href="{% url "admin:gsaudit_teacher_changelist" %}" class="gsaudit-teacher-icon" data-link-id="teacher"><span></span>Teacher</a>
-    <a href="{% url "admin:gsaudit_pupil_changelist" %}" class="gsaudit-pupil-icon" data-link-id="pupil"><span></span>Pupil</a>
-    <a href="{% url "admin:gsaudit_skill_changelist" %}" class="gsaudit-skill-icon" data-link-id="skill"><span></span>Skill</a>
+    <a href="{% url "admin:index" %}" class="gsaudit-dashboard" data-link-id="dashboard"><span></span>Übersicht</a>
+    <a href="{% url "admin:gsaudit_school_changelist" %}" class="gsaudit-school-icon" data-link-id="school"><span></span>Schule</a>
+    <a href="{% url "admin:gsaudit_grade_changelist" %}" class="gsaudit-grade-icon" data-link-id="grade" ><span></span>Klassen</a>
+    <a href="{% url "admin:gsaudit_teacher_changelist" %}" class="gsaudit-teacher-icon" data-link-id="teacher"><span></span>Lehrer</a>
+    <a href="{% url "admin:gsaudit_pupil_changelist" %}" class="gsaudit-pupil-icon" data-link-id="pupil"><span></span>Schüler</a>
+    <a href="{% url "admin:gsaudit_skill_changelist" %}" class="gsaudit-skill-icon" data-link-id="skill"><span></span>Kompetenzbäume</a>
 
 {% endblock %}
-admin:gsaudit_school
+

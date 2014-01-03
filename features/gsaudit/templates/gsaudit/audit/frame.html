@@ -1,19 +1,18 @@
 {% extends "gsaudit/course/frame.html" %}
 
 
-{% block tabs %}
-    <a href="{% url "audit-listing" grade_id=grade.id subject_id=subject.id %}" {% if listing_view %} class="active" {% endif %}>Listen-Ansicht</a>
-    <a href="{% url "audit-calendar_listing" grade_id=grade.id subject_id=subject.id %}" {% if calendar_listing_view %} class="active" {% endif %}>Kalender-Ansicht</a>
-{% endblock %}
-
 
 {% block course_content %}
     
     <div class="exam-legend float-right">
+       
+        <a href="{% url "audit-listing" grade_id=grade.id subject_id=subject.id %}" {% if listing_view %} class="active" {% endif %}>Listen-Ansicht</a> | 
+        <a href="{% url "audit-calendar_listing" grade_id=grade.id subject_id=subject.id %}" {% if calendar_listing_view %} class="active" {% endif %}>Kalender-Ansicht</a>
+         <br/><br/>
         <div class="oral-exam-legend "><span></span> Beobachtungen</div>
-         <div class="written-exam-legend"><span></span> Schriftliche Lernstandserhebungen</div>
+        <div class="written-exam-legend"><span></span> Schriftliche Lernstandserhebungen</div>
     </div>
-    <div class="buttons" id="audit-toolbar">
+    <div class="buttons small" id="audit-toolbar">
         <a href="{% url "audit-manage" grade_id=grade.id subject_id=subject.id %}" class="oral-exam">+ Beobachtung anlegen</a>
         <a href="{% url "exam-manage" grade_id=grade.id subject_id=subject.id %}" class="written-exam">+ Schriftliche Lernstandserhebungen anlegen</a>
     </div>

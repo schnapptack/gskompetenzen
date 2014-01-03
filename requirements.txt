@@ -1,3 +1,4 @@
+django==1.5.5
 -e git+https://github.com/henzk/ape.git#egg=ape
 -e git+https://github.com/audreyr/cookiecutter.git@5fb9b77869f43dfc1fb746701a32d7e68678092c#egg=cookiecutter
 -e git+https://github.com/henzk/djpl-container-management.git#egg=djpl-container-management

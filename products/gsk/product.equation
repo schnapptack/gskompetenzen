@@ -1,6 +1,7 @@
 django_productline
 django_productline.features.staticfiles
 django_productline.features.admin
+postgres
 emailing
 schnippjs
 cssbasics
@@ -10,5 +11,6 @@ schnadmin_sidenav
 users
 gsaudit
 gsadmin
+gsk_maintenance
 gsk
 django_productline.features.development

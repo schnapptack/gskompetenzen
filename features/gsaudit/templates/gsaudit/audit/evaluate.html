@@ -1,10 +1,6 @@
 {% extends "gsaudit/audit/frame.html" %}
 {% load i18n %}
 
-{% block tabs %}
-    {{ block.super }}
-    <a class="active" href="javascript:return false;">{{ audit.name }} | {{ audit.date|date:"l, j. F Y" }}</a>
-{% endblock %}
 
 {% block course_content %}
 
@@ -13,6 +9,7 @@
         #evaluation-form .submit-row {padding:12px;  margin-top:2px; background:#f5f5f5;}
     </style>
     
+    <h1> {{ audit.name }} | {{ audit.date|date:"l, j. F Y" }}</h1>
     {% include "gsaudit/skill_legend.html" %}
     
     <br/>

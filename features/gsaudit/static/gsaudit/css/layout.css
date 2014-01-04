@@ -1,6 +1,11 @@
 
 #mainbar {width:100%; z-index:111; border-bottom:0px solid #ddd;}
 
+#mainbar {        box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.16);
+-moz-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.16);
+-webkit-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.16);}
+
+
 #left {position:fixed; margin-top:-11px;}
 #right {margin-left: 200px; margin-top:68px; padding-left:22px; padding-top:8px;}
 
@@ -9,10 +14,10 @@
 
 .mainbar-tabs {}
 
-#selected-grade {font-weight:bold; background:#333; color:#fff; min-width:100px;}
+#selected-grade {font-weight:bold; background:#333; color:#fff;height:12px; min-width:158px; background: url(tafel.jpg);}
 
 #user-tools {float:right;}
-#user-tools a {display:block; text-decoration:none; padding:5px; border-bottom:1px solid #ddd; border-left:1px solid #ddd;}
+#user-tools a {text-decoration:none; padding:22px; color:#fff; display:inline-block;}
 
 
 
@@ -22,17 +27,15 @@
     -ms-transition: all 2 ease;
     -o-transition: all 2 ease;
     transition: all 2 ease;
+    background: url(tafel.jpg);
 }
+
+
+
 
 /* GLOBAL NAVIGATION
 --------------------------------------------------------------------------------------------------*/
-    #global-nav {float:right; background:#666;}
-    #global-nav a {
-        width:60px; height:55px; display:block; float:left; 
-        background:url(http://cdn2.iconfinder.com/data/icons/picons-essentials/57/logout-32.png) center no-repeat;
-    }
-    #global-nav a:hover {background-color: #4d4d4d !important;}
-    a#logo {background: url(gsk_logo.png) center no-repeat; border-left:0px; }  
+    a#logo {background: url(gsk_logo.png) center no-repeat; border-left:0px; width:83px; height:60px; padding:0px;}  
     a#myaccount {background: url(User-2.png) center no-repeat; }  
     a#dashboard {background: url(Documents.png) center no-repeat; }
     a#admin {background: url(screen.png) center no-repeat; }  
@@ -43,8 +46,10 @@
 
 /* GLOBAL NAVIGATION
 --------------------------------------------------------------------------------------------------*/
-.page {padding:88px 4px 22px 22px;}
-
+    .page {padding:100px 4px 22px 22px;}
+    
+    
+    
 
 /* SIDE MENU
 -----------------------------------------*/

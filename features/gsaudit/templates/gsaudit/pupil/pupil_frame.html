@@ -9,7 +9,7 @@
     <h1> <i>{{ pupil }}</i></h1>
     <div class="schnadmin-tabs">
         <a href="{% url "pupil-statistic" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_stats_view %} class="active"{% endif %}>Kompetenzentwicklung</a>
-        <a href="{% url "pupil-ta_info" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_info_view %} class="active"{% endif %}>Notizen</a>
+        {% comment %}<a href="{% url "pupil-ta_info" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_info_view %} class="active"{% endif %}>Notizen</a>{% endcomment %}
         <a href="{% url "pupil-eval_info" grade_id=grade.id subject_id=subject.id pupil_id=pupil.id %}" {% if pupil_eval_info_view %} class="active"{% endif %}>Auswertung</a>
     </div>
     <div style="padding:12px 0px 0px 22px;">

@@ -2,17 +2,6 @@
 {% load i18n %}
 {% load mptt_tags %}
 
-{% block tabs %}
-    <a href="{% url "audit-listing" grade_id=grade.id subject_id=subject.id %}" {% if listing_view %} class="active" {% endif %}>Listen-Ansicht</a>
-    <a href="{% url "audit-calendar_listing" grade_id=grade.id subject_id=subject.id %}" {% if calendar_listing_view %} class="active" {% endif %}>Kalender-Ansicht</a>
-
-    {% if create%}
-        <a class="active">{{ audit.get_type }} anlegen</a>
-         
-    {% else %}
-        <a class="active">{{ audit }} bearbeiten</a>
-    {% endif %}
-{% endblock %}
 
 
 
@@ -67,7 +56,11 @@
 
 
 <div>
-
+    {% if create%}
+        <h1>{{ audit.get_type }} anlegen</h1>
+    {% else %}
+        <h1>{{ audit }} bearbeiten</h1>
+    {% endif %}
     
     <form method="post" action="{{ post_url }}" id="audit-form">
             {% csrf_token %}

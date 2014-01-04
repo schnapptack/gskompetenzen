@@ -15,9 +15,6 @@
                  {% for message in messages %}<div>{{ message }}</div> {% endfor %}
             </div>
             <div id="mainbar">
-                <div id="global-nav" style="float:left">
-                    <a href="/" title="Dashboard" id="logo"></a>
-                </div>
                 
                 <div id="user-tools">
                      <a title="Mein Account" href="{% url "myaccount" %}">Mein Account</a>
@@ -26,7 +23,10 @@
                 </div>
                 
                 <div class="mainbar-tabs">
-                    {% block tabs %}{% endblock %}
+                    {% block tabs %}
+                        <a id="logo" href="/"></a>
+                        <span style="padding: 22px; display:block; color:#eee; font-size:17px; font-weight:bold; float:left;">{{ school }}</span>
+                    {% endblock %}
                 </div>
                  
                    

@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %} 
 
-
  
 {% block content %}
 
@@ -9,23 +8,26 @@
 
 <div class="page">
     <h1>Meine Lehraufträge</h1>
+    <br/><br/>
          
-    <div style="  float:left;">
+    <div class="buttons" id="tas">
     {% for ta in teaching_assignments %}
-        <div class="ta-dashboard" >
-            <h1>
-                <a class="ta-subject" href="{% url "course-index" grade_id=ta.grade.id subject_id=ta.subject.id %}" title="{{ subject }} in der Klasse {{ grade }} öffnen">
-                {{ ta.grade }} | {{ ta.subject }}</a>
-            </h1>
+            <a  href="{% url "course-index" grade_id=ta.grade.id subject_id=ta.subject.id %}" title="{{ subject }} in der Klasse {{ grade }} öffnen">
+                <span style="font-size:25px; display:block;">{{ ta.grade }} | {{ ta.subject }}</span>
+            {{ ta.get_participants|length }} SchülerInnen, {{ ta.audit_set.all|length }} Beobachtungen 
+            </a>
 
-            <div>{{ ta.get_participants|length }} SchülerInnen, {{ ta.audit_set.all|length }} Beobachtungen </div>
-        </div>
     {% endfor %}
     </div>
-    <div style="float:left; margin-left:22px; width:300px; color:#999; padding:22px; background: #f5f5f5; border:2px dashed #ACCCAB;">
+    <div style="float:left; margin-left:22px; width:240px; color:#999; padding:22px; background: #f5f5f5; border:2px dashed #ACCCAB;">
         <h2 style="font-size:17px">Mein Aktivitätsindex:</h2>
         <span style="font-size:69px; color:#ACCCAB">{{ activity_index }}</span>
     </div>
+    
+    <style>
+        #tas {width:580px; float:left;}
+        #tas a {width:220px; margin:0px 5px 5px 0px; padding:44px 30px 44px 30px ;}
+    </style>
     
 </div>
 {% endblock %}

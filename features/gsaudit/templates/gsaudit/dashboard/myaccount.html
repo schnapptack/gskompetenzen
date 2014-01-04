@@ -8,19 +8,26 @@
 
 <div class="page myaccount">
     <h1>{{ teacher.first_name }} {{ teacher.last_name }}</h1>
+     <div class="buttons">
+            <a href="/">Zurück zur Übersicht</a>
+        </div>
+        <br/>
+    <div class="note" style="width:444px;">
+        <table >
+            <tr>
+                <th>Benutzername:</th>
+                <td>{{ teacher.username }}</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>{% if teacher.email %}{{ teacher.email }} {% else %} Keine Email hinterlegt {% endif %}</td>
+            </tr>
+            
+        </table>
+        <br/>
+            <div class="buttons small"> <a href="{% url "gsaudit-password_change" %}">Passwort ändern</a></div>
+    </div>
     
-    <table >
-        <tr>
-            <th>Benutzername:</th>
-            <td>{{ teacher.username }}</td>
-        </tr>
-        <tr>
-            <th>Email:</th>
-            <td>{% if teacher.email %}{{ teacher.email }} {% else %} Keine Email hinterlegt {% endif %}</td>
-        </tr>
-    </table>
-    <br/><br/><br/><br/>
-    <div class="buttons mega"> <a href="{% url "gsaudit-password_change" %}">Passwort ändern</a></div>
 </div>
 
 

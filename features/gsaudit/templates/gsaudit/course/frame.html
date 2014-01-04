@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+
+{% block bodyclass %}course-views{% endblock %}
 {% block tabs %}
-        <a id="selected-grade">{% block position%}{{grade}} | {{ subject }} {% endblock %}</a>
+        <a id="selected-grade" href="/">{% block position%}{{grade}} | {{ subject }} {% endblock %}</a>
         <a href="{% url "audit-listing" grade_id=grade.id subject_id=subject.id %}" {% if audit_view %} class="active" {% endif %} >Beobachtungen</a>
         <a href="{% url "course-subject_statistics" grade_id=grade.id subject_id=subject.id %}" {% if subject_statistic_view %} class="active" {% endif %} >Klassenstatistik</a>
 {% endblock %}
@@ -14,7 +16,7 @@
        
         <div class="side-menu">
             {% block side_menu %}
-           <a href="{% url "course-index" grade_id=grade.id subject_id=subject.id %}" {% if course_dashboard %} class="active" {% endif %}>Übersicht</a>
+            <a href="{% url "course-index" grade_id=grade.id subject_id=subject.id %}" {% if course_dashboard %} class="active" {% endif %}>Übersicht</a>
             <div style="padding:22px; background:#fff;">Schülerinnen & Schüler</div>
             <div class="side-menu-pupils">
                 {% for participant in grade.get_participants %}
@@ -37,29 +39,26 @@ $(function() {
     $('#right').css('min-height', $(window).height() + 100)
     
     
-    /*var nav_height =  $('#global-nav').outerHeight()    
-    $(window).scroll(function() {
-        if($(window).scrollTop() > nav_height) {
-            $('#mainbar').addClass('fixed')
-              
-            $('#left').css({
-                position:'fixed',
-                top: $('#mainbar').height() +'px'
-            })
-            $('#right').css({
-                'margin-top': $('#mainbar').height() +'px',
-                'margin-left': '200px'
-            })
-            
-        } else {
-            $('#mainbar').removeClass('fixed')
-             $('#left').css({
-                position:'static'
-            })
-            $('#right').css('margin', 'inherit')
-        }
+    var sg = $('#selected-grade')
+    var content = sg.html()
+    sg.empty()
+    
+    var location = $('<div>' + content + '</div>')
+    var back = $('<div style="display:none">Zurück zur Übersicht</div>')
+    sg.append(location)
+    sg.append(back)
+    
+    sg.hover(function() {
+        location.effect('clip', 100, function() {
+            back.show(100)
+        })
+    }, function() {
+        back.effect('clip', 100, function() {
+            location.show(100)
+        })
     })
-        */
+    
+    
 })
 
     

@@ -65,9 +65,7 @@ def overview(request, subject_id=0, grade_id=0):
     form = TeachingAssignmentForm(request.POST or None, instance=assignment)
     if request.method == 'POST':
         if form.is_valid():
-            print form
             ta = form.save(commit=False)
-            print ta.note
             ta.save()
             
     

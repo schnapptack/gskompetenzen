@@ -34,12 +34,12 @@ body {margin:0px; font-family: arial, sans-serif; color:#646464; font-size:13px;
 
 /* MAINBAR
 -----------------------------------------*/
-#mainbar {background:#eee;}
-.mainbar-tabs {float:left; }
-.mainbar-tabs a {
-    padding:21px; border-right:1px solid #ddd;  background:#eee;  display:block; 
-    float:left; text-decoration:none; font-size:13px; color: #888}
-.mainbar-tabs a.active {background:#fff; font-weight:bold;}
+    #mainbar {background:#eee;}
+    .mainbar-tabs {float:left; }
+    .mainbar-tabs a {
+        padding:21px; border-right:1px solid #666;  background:url(dark_wall.png);  display:block; 
+        float:left; text-decoration:none; font-size:13px; color: #ccc}
+    .mainbar-tabs a.active {background:#fff; font-weight:bold; color:#888;}
 
 /* Teaching Assignement VIEW
 -----------------------------------------*/

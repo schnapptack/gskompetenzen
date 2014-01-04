@@ -195,7 +195,7 @@ class SkillGraph(object):
                 current_group.skills.append(skill)
                 skill_id_to_skill[skill.id] = skill
         
-        print skill_id_to_skill
+        #print skill_id_to_skill
         
         for elem in pupilauditskills:
             skill = skill_id_to_skill[elem.skill.id]

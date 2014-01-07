@@ -33,9 +33,10 @@
 
 
 
+
 /* GLOBAL NAVIGATION
 --------------------------------------------------------------------------------------------------*/
-    a#logo {background: url(gsk_logo.png) center no-repeat; border-left:0px; width:83px; height:60px; padding:0px;}  
+    a#logo {background: url(gsk_logo.png) center no-repeat; border-left:0px; width:83px; height:59px; padding:0px;}  
     a#myaccount {background: url(User-2.png) center no-repeat; }  
     a#dashboard {background: url(Documents.png) center no-repeat; }
     a#admin {background: url(screen.png) center no-repeat; }  

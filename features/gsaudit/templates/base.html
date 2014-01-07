@@ -11,30 +11,31 @@
 	</head>
 	
 	<body class="{% block bodyclass %}{% endblock %} ">
-           <div id="user-feedback">
-                 {% for message in messages %}<div>{{ message }}</div> {% endfor %}
+        <div id="user-feedback">
+             {% for message in messages %}<div>{{ message }}</div>{% endfor %}
+        </div>
+        <div id="mainbar">
+            
+            <div id="user-tools">
+                {% block user_tools %}{% endblock %}
+                <a title="Mein Account" href="{% url "myaccount" %}">Mein Account</a>
+                <a title="Logout" href="/teachers/logout/">Logout</a>
+                {% if teacher.is_staff %}<a title="Zur Administration" href="/admin/">Administration</a>{% endif %}
             </div>
-            <div id="mainbar">
-                
-                <div id="user-tools">
-                     <a title="Mein Account" href="{% url "myaccount" %}">Mein Account</a>
-                     <a title="Logout" href="/teachers/logout/">Logout</a>
-                    {% if teacher.is_staff %}<a title="Zur Administration" href="/admin/">Administration</a>{% endif %}
-                </div>
-                
-                <div class="mainbar-tabs">
-                    {% block tabs %}
-                        <a id="logo" href="/"></a>
-                        <span style="padding: 22px; display:block; color:#eee; font-size:17px; font-weight:bold; float:left;">{{ school }}</span>
-                    {% endblock %}
-                </div>
-                 
-                   
-                <div class="clear"></div>
+            
+            <div class="mainbar-tabs">
+                {% block tabs %}
+                    <a id="logo" href="/"></a>
+                    <span style="padding: 21px; display:block; color:#eee; font-size:17px; font-weight:bold; float:left;">{{ school }}</span>
+                {% endblock %}
             </div>
-       
-            {% block content %}
-            {% endblock %}
+             
+               
+            <div class="clear"></div>
+        </div>
+   
+        {% block content %}
+        {% endblock %}
     </body>
     
     <script type="text/javascript">

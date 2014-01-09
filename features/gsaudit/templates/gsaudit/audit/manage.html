@@ -31,11 +31,12 @@
         border-left:1px solid #fff; float:left; padding: 2px 4px 2px 4px; background:#fff;
     }
     
-    .skilltree li {list-style:none; }
-    .skilltree li div.node {padding:5px 0px 5px 0px;  display:block; color:#646464; font-style:italic;}
+    .skilltree {margin-top:12px; }
+    .skilltree li {list-style:none; margin-left:22px; }
+    .skilltree li div.node {padding:5px 0px 5px 0px;  display:block; color:#646464; font-weight:bold;}
     .skilltree li label {display:inline; cursor:pointer;}
     .skilltree > li {margin:0px;}
-    .skilltree li.collapsable div.node {cursor:pointer; font-style:normal;}
+    .skilltree li.collapsable div.node {cursor:pointer; font-style:normal; font-weight:normal}
     .skilltree li.collapsable div.node:hover {background:#f5f5f5; } 
     .skilltree li.collapsable .children {display:none;}
     
@@ -103,7 +104,7 @@
                     {{auditform.date.errors}}
                     {{ auditform.date }}
                 </div>   
-                    <div class="form-row {% if auditform.errors.skills %} errors {% endif %}">
+                    <div class="form-row {% if auditform.errors.skills %} errors {% endif %}" style="padding-left:22px; border-left:1px solid #eee;">
                         {% if auditform.errors.skills %}
                         <div class="errorlist">{{ auditform.errors.skills }}</div>
                         {% endif %}

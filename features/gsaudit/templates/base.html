@@ -36,9 +36,7 @@
    
         {% block content %}
         {% endblock %}
-    </body>
-    
-    <script type="text/javascript">
+         <script type="text/javascript">
     
         $('#user-feedback div').each(function() {
             $(this).hide('fade', 6000)            
@@ -55,6 +53,10 @@
         }   
         $('body').addClass(cls)   **/
     </script>
+        {% block analytics %}{% endblock %}
+    </body>
+    
+   
 </html>
 
 {% comment %}
